@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admissions — HPS, Hamdard Public School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;900&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-deep:#0c1c33; --navy-mid:#122a4a; --navy-line:#233c60;
+    --gold:#c9a227; --gold-soft:#e2c569; --cream:#f6f1e4; --paper:#fbf8f0;
+    --ink:#161613; --ink-soft:#4a473e;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:'Source Sans 3', sans-serif; -webkit-font-smoothing:antialiased;}
+  h1,h2,h3,.serif{font-family:'Playfair Display', serif;}
+  a{color:inherit;}
+  .eyebrow{text-transform:uppercase; letter-spacing:.18em; font-size:.72rem; font-weight:600; color:var(--gold);}
+  nav{position:sticky; top:0; z-index:50; background:var(--navy-deep); border-bottom:1px solid var(--navy-line); padding:14px 6vw; display:flex; align-items:center; justify-content:space-between;}
+  .brand{display:flex; align-items:center; gap:10px; color:var(--cream); text-decoration:none;}
+  .brand-name{font-family:'Playfair Display',serif; font-weight:700; font-size:1.05rem;}
+  .navlinks{display:flex; gap:34px; list-style:none; margin:0; padding:0;}
+  .navlinks a{color:#cdd6e4; text-decoration:none; font-size:.86rem;}
+  .navlinks a:hover{color:var(--gold-soft);}
+  @media (max-width:860px){ .navlinks{display:none;} }
+
+  .hero{
+    background:
+      radial-gradient(ellipse at 80% -10%, rgba(201,162,39,.16), transparent 55%),
+      linear-gradient(180deg, var(--navy-deep), var(--navy-mid));
+    color:var(--cream); padding:80px 6vw 64px; text-align:center;
+  }
+  .hero .eyebrow{color:var(--gold-soft); display:block; margin-bottom:16px;}
+  .hero h1{font-size:clamp(2.2rem,5vw,3.4rem); margin:0 0 18px; font-weight:700;}
+  .hero p{max-width:56ch; margin:0 auto; color:#cfd7e4; font-size:1.05rem; line-height:1.65;}
+
+  section{padding:76px 6vw;}
+  .why{background:var(--cream);}
+  .why-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:#ddd3ba; border:1px solid #ddd3ba;}
+  @media (max-width:860px){ .why-grid{grid-template-columns:1fr;} }
+  .why-item{background:var(--paper); padding:30px 26px;}
+  .why-item .check{color:var(--gold); font-weight:700; margin-right:8px;}
+  .why-item h3{font-size:1rem; margin:0 0 8px; font-weight:600;}
+  .why-item p{margin:0; font-size:.88rem; color:var(--ink-soft); line-height:1.5;}
+
+  .apply{background:var(--paper);}
+  .apply-grid{display:grid; grid-template-columns:1fr 1.1fr; gap:60px;}
+  @media (max-width:900px){ .apply-grid{grid-template-columns:1fr;} }
+  .info-card{background:var(--navy-deep); color:var(--cream); padding:38px 32px; border-radius:2px;}
+  .info-card h3{font-size:1.3rem; margin:0 0 18px; font-weight:600;}
+  .info-row{display:flex; gap:12px; padding:12px 0; border-bottom:1px solid var(--navy-line); font-size:.92rem;}
+  .info-row b{color:var(--gold-soft); min-width:80px; display:inline-block;}
+  .info-card a{color:var(--cream); text-decoration:underline;}
+
+  form{display:flex; flex-direction:column; gap:16px;}
+  label{font-size:.82rem; font-weight:600; letter-spacing:.02em; margin-bottom:6px; display:block;}
+  input, select, textarea{
+    width:100%; padding:12px 14px; border:1px solid #d9cfb2; background:#fff;
+    font-family:'Source Sans 3',sans-serif; font-size:.95rem; border-radius:2px;
+  }
+  input:focus, select:focus, textarea:focus{outline:2px solid var(--gold); outline-offset:1px;}
+  .row2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  @media (max-width:520px){ .row2{grid-template-columns:1fr;} }
+  .submit-btn{
+    background:var(--gold); color:var(--navy-deep); padding:14px 26px; border:none; font-weight:700;
+    font-size:.95rem; border-radius:2px; cursor:pointer; margin-top:6px;
+  }
+  .submit-btn:hover{background:var(--gold-soft);}
+  .form-note{font-size:.8rem; color:var(--ink-soft); margin-top:-4px;}
+
+  footer{background:#081324; color:#93a0b8; padding:40px 6vw 26px; text-align:center; font-size:.85rem;}
+  footer a{color:#93a0b8;}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="brand" href="index.html">
+    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCADwAPADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD5q8tPT9aPLT0/WnUV6fs4dji55dxnlp6frR5aeh/On0Uezh2Dnl3GeUvp+tHlr6frT6KPZw7Bzy7jPLX0/Wjy19KfRR7OHYOeXcZ5aen60eWnp+tPoo9nDsHPLuM8tfT9aPLT0/Wn0Uezh2Dnl3G+WnpR5aen606ij2cOwc8u4zy09P1o8tPT9afRR7OHYOeXcZ5aen60eUvp+tPoo9nDsHPLuM8tPT9aPLT0/Wn0Uezh2Dnl3GeWnp+tHlp6frT6KPZw7Bzy7jPLT0/Wjy09D+dPoo9nDsHPLuM8tPT9aPLT0/Wn0Uezh2Dnl3GeWnp+tHlr6frT6KPZw7Bzy7jPLT0P50eUnofzp9FHs4dg55dwoooqyQooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAopaSgAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAoopaAEooooAKKKKACiiigAooooAKKKKAFpKKu6PFYzanbx6tczWtgzYmmhi810GDyEyM8470noNK5Sor6A8JfAvw34u0kaloHja4urXcUb/iXhWjYdVZS+QeRU/iT4A6B4a0ibVNc8azWllFgNI1gpyT0UAPkk9gKx+sQvY19jLc+eKK0/EVvpdtqskWg31xf2CgbLi4t/Idjjn5MnAz71m1sncyatoJRXoXw28I+FPFk1rp+oeKbrS9auHMcdu1iHic5+ULJuA3EdiBzxXrP/DMdn28VXX/AIAr/wDF1lKvCDtI0jSlJXR8yUV3XxH8MeF/DE81ho3ia51jVbebypovsQjiTGdw8zccsDgYAx154rN8E6X4Y1SaSHxP4gutFYsqwyJZefGQepdtwK4OOxq1NNcxPI72OYpK+mU/ZmsXRWTxXcMrAEMtkhBB6EHfXI638LfAeh6tcaZq/wASPsl/AQJYZNPOVyARyCR0IrNYiD2L9jJbnitJXvGkfBHw34jUr4X+IljfzgZMf2dS3/fIfd+lcv42+CXi3wtbS3iww6rYRgs81iSzIvq0ZAYD3Gaarwbtcl0pLU8vooqW1t5rq4it7WJ5p5WCRxxqWZ2JwAAOpNamZFRXuWk/AyDSdD/tn4k+IYdCtBjMEWHkUnopY5G7/ZUMait9J+Bkswtzr3iKMk48+RGVPr/q+B+FZe3j01NfZPqeJUV9Eal+zvZ6npyah4H8UQ3tvKu6IXQDJIPaWP8AqteBatp9xpWqXmn3qhLq0meCVQcgMpIOD35HWqhVjU+EmVNx3KlFFFaEBRRRQAUUUUAFFFFABRRRQAUUUUAfTP7HjH+z/FSknb51sce+2Sr37X0rr4V8PRBiI3v5GYepEXH8zVD9j3/jy8Vf9dbb/wBBkq5+1/8A8i34b/6/Zf8A0WK85/7wdi/hHy3RS0leicZo+HHaPxDpToSGW7hII7HzFr9E5DiRyOCG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H8G84/KrdhFf6rexW1vJJJNy675sBAoJZixOFAAJJ9BWfWhoN4lhqsFzJNdwCPJ8y0K+YpwRkbuCPUHqMiomrRbitSoO8km9CS70m9El40jQ3AtokmlljuFlUozBVIYE55YcdRUsGjatd3trGilppbYXaSPMAEh5+dnJwgGO5GPxrUm1/SptSvg1pcR2F7ZpbTSQpHHK0isr+dsHyAllGVHGO+aQ+IrB72aB7a6/seTT003h188IjBhJ/d3bhnb0xxnvXNz1rfD/AF9/4HRy07/EZ76Dq1xqQsy0dxIITP5ou0eJYu7mTdtC/Ujmn2/hzVFu50iltIzBCs7XAvY1j8tm2giTdjk8YzmpbLUtGsri9tYodQfSr22EEzsyCfcHDiRQPlHKj5STkZ5q1omt6PpM+pR2q6iltdW0cIleKGWTesgcsUb5ADjGOSOuaJTrJOy/D/g/gCjTvdv8TLt/D9/P9pEctkIYJREZWvI1ieQjIVGJ2s2PSo49Hv59MN+zQrbneyCa5RHk2/fKKxy2O+O/rWzo2v6dY39+876jPaTzCRrcwQeXcqOqyRn5UOSQGToDxUOma7YW2h3NndR3c4kEuyzdY3t1dh8rqx+dCvBOPvEe9DnW6Lt0+8OWn37nNGVycl3JzuyWPX1+vvSGRyQS7EjoSTx3ptJXZZHLdknmybHTe+xzl13HDH3Hembjt25O3OcZ4zSUUWC7JmuZ2ADzSsFOQC5OD7VGXYrtLNtzuxnjPr9abRRZILsKKKKYgooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP/9k=" alt="HPS logo" style="width:34px;height:34px;border-radius:50%;object-fit:cover;">
+    <span class="brand-name">HPS</span>
+  </a>
+  <ul class="navlinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#results">Results</a></li>
+    <li><a href="admissions.html">Admissions</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">Admissions 2026–27</span>
+  <h1>Give your child the future they deserve</h1>
+  <p>Join the Hamdard family — a Cambridge and Matric education in Model Town, built on quality that doesn't put itself out of reach.</p>
+</header>
+
+<section class="why">
+  <div class="section-head" style="max-width:640px; margin-bottom:44px;">
+    <span class="eyebrow">Why Choose HPS</span>
+    <h2 style="font-size:clamp(1.6rem,3vw,2.2rem); margin:10px 0 0; font-weight:600;">Where 100 years of legacy meets world-class education</h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-item"><h3><span class="check">✓</span>Dual Curriculum</h3><p>Cambridge and Matric systems taught on one campus.</p></div>
+    <div class="why-item"><h3><span class="check">✓</span>Science &amp; Computer Labs</h3><p>State-of-the-art lab space for hands-on learning.</p></div>
+    <div class="why-item"><h3><span class="check">✓</span>Library &amp; Event Hall</h3><p>A spacious library plus a newly built, modern Event Hall.</p></div>
+    <div class="why-item"><h3><span class="check">✓</span>Experienced Faculty</h3><p>Dedicated teachers who've guided classes since 1999.</p></div>
+    <div class="why-item"><h3><span class="check">✓</span>Most Affordable Fees</h3><p>Among the most competitive fee structures in the area.</p></div>
+    <div class="why-item"><h3><span class="check">✓</span>Hundreds of Alumni</h3><p>Successful graduates excelling in every field.</p></div>
+  </div>
+</section>
+
+<section class="apply" id="apply">
+  <div class="section-head" style="max-width:640px; margin-bottom:44px;">
+    <span class="eyebrow">Start Your Application</span>
+    <h2 style="font-size:clamp(1.6rem,3vw,2.2rem); margin:10px 0 0; font-weight:600;">Tell us about your child</h2>
+  </div>
+  <div class="apply-grid">
+    <div class="info-card">
+      <h3>Reach us directly</h3>
+      <div class="info-row"><b>Location</b><span>4-J Model Town, Lahore</span></div>
+      <div class="info-row"><b>Call</b><span><a href="tel:03078887799">0307-888-7799</a><br><a href="tel:03084002244">0308-400-2244</a></span></div>
+      <div class="info-row"><b>Landline</b><span><a href="tel:04235887799">042-3588-7799</a></span></div>
+      <div class="info-row" style="border-bottom:none;"><b>Instagram</b><span><a href="https://www.instagram.com/hps.lahore/" target="_blank">@hps.lahore</a></span></div>
+    </div>
+
+    <form id="admissionForm">
+      <div class="row2">
+        <div><label for="sname">Student's name</label><input id="sname" required></div>
+        <div><label for="grade">Applying for grade</label>
+          <select id="grade">
+            <option>Playgroup / Nursery</option>
+            <option>Kindergarten</option>
+            <option>Grade 1–5</option>
+            <option>Grade 6–8</option>
+            <option>Grade 9–10 (Matric)</option>
+            <option>O Level</option>
+          </select>
+        </div>
+      </div>
+      <div class="row2">
+        <div><label for="pname">Parent / guardian name</label><input id="pname" required></div>
+        <div><label for="phone">Phone number</label><input id="phone" type="tel" required></div>
+      </div>
+      <div><label for="msg">Anything we should know?</label><textarea id="msg" rows="3" placeholder="Optional"></textarea></div>
+      <button type="submit" class="submit-btn">Send Inquiry on WhatsApp</button>
+      <p class="form-note">This opens WhatsApp with your details filled in — HPS will reply directly.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <p>HPS — Hamdard Public School, 4-J Model Town, Lahore · "Knowledge · Character · Success"</p>
+  <p><a href="index.html">Back to homepage</a></p>
+</footer>
+
+<script>
+document.getElementById('admissionForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const sname = document.getElementById('sname').value;
+  const grade = document.getElementById('grade').value;
+  const pname = document.getElementById('pname').value;
+  const phone = document.getElementById('phone').value;
+  const msg = document.getElementById('msg').value;
+  const text = `Admission Inquiry — HPS\nStudent: ${sname}\nGrade: ${grade}\nParent/Guardian: ${pname}\nPhone: ${phone}\nMessage: ${msg || 'N/A'}`;
+  const waNumber = "923078887799";
+  const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(text)}`;
+  window.open(url, '_blank');
+});
+</script>
+
+</body>
+</html>
