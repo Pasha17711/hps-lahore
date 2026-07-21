@@ -51,14 +51,12 @@
   nav{
     position:fixed; top:0; left:0; right:0; z-index:100;
     display:flex; align-items:center; justify-content:space-between;
-    padding:22px 40px; transition:background .35s ease, padding .35s ease, box-shadow .35s ease;
+    padding:20px 40px; transition:background .35s ease, padding .35s ease, box-shadow .35s ease;
   }
-  @media (max-width:700px){ nav{padding:16px 22px;} }
   nav.solid{background:var(--navy); padding:14px 40px; box-shadow:0 1px 0 var(--line-navy);}
-  @media (max-width:700px){ nav.solid{padding:12px 22px;} }
   .brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:#fff;}
   .brand img{width:32px; height:32px; border-radius:50%; object-fit:cover;}
-  .brand span{font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem; letter-spacing:.01em;}
+  .brand span{font-family:'Fraunces',serif; font-weight:600; font-size:1.12rem; letter-spacing:.08em;}
   .navlinks{display:flex; gap:32px; list-style:none; margin:0; padding:0;}
   .navlinks a{color:rgba(255,255,255,.82); text-decoration:none; font-size:.86rem; font-weight:500;}
   .navlinks a:hover{color:#fff;}
@@ -68,7 +66,7 @@
     padding:9px 20px; border-radius:2px; letter-spacing:.02em; transition:background .2s, border-color .2s;
   }
   .nav-cta:hover{background:rgba(255,255,255,.1); border-color:#fff;}
-  .menu-btn{display:none; background:none; border:none; color:#fff; font-size:1.4rem; cursor:pointer;}
+  .menu-btn{display:none; background:none; border:1px solid rgba(255,255,255,.35); border-radius:2px; color:#fff; font-size:1.35rem; line-height:1; padding:8px 10px; cursor:pointer;}
   @media (max-width:900px){ .menu-btn{display:block;} }
   .mobile-menu{
     position:fixed; inset:0; background:var(--navy); z-index:200; display:flex; flex-direction:column;
@@ -77,21 +75,20 @@
   .mobile-menu.open{transform:translateY(0);}
   .mobile-menu a{color:#fff; text-decoration:none; font-family:'Fraunces',serif; font-size:1.5rem;}
   .mobile-menu .close-btn{position:absolute; top:22px; right:22px; background:none; border:none; color:#fff; font-size:1.8rem; cursor:pointer;}
+  @media (prefers-reduced-motion: reduce){ .mobile-menu{transition:none;} }
 
   /* ---------- HERO ---------- */
-  .hero{background:var(--navy); overflow:hidden;}
-  .hero-split{display:grid; grid-template-columns:1.15fr 1fr; min-height:600px;}
-  @media (max-width:900px){ .hero-split{grid-template-columns:1fr; min-height:0;} }
-  .hero-text-col{display:flex; align-items:center; color:#fff;}
-  .hero-text-inner{max-width:520px; padding:70px 40px;}
-  @media (max-width:700px){ .hero-text-inner{padding:52px 22px 40px;} }
-  .hero .label{color:var(--gold-soft); display:block; margin-bottom:18px;}
-  .hero h1{font-size:clamp(2.3rem,4.4vw,3.6rem); line-height:1.08; margin:0 0 20px; font-weight:600;}
-  .hero p{font-size:1.02rem; color:rgba(255,255,255,.82); margin:0 0 32px; line-height:1.65;}
+  .hero{position:relative; min-height:min(820px,100svh); background:var(--navy); color:#fff; overflow:hidden; display:grid; grid-template-rows:1fr auto;}
+  .hero-media{position:absolute; inset:0; display:block;}
+  .hero-media::after{content:""; position:absolute; inset:0; background:linear-gradient(90deg,rgba(13,28,51,.88) 0%,rgba(13,28,51,.68) 32%,rgba(13,28,51,.18) 55%,rgba(13,28,51,0) 72%);}
+  .hero-media img{width:100%; height:100%; object-fit:cover; object-position:center;}
+  .hero-main{position:relative; z-index:1; width:100%; max-width:var(--wrap); margin:0 auto; padding:126px 40px 48px; display:flex; align-items:center;}
+  .hero-copy{max-width:600px;}
+  .hero .label{color:var(--gold-soft); display:block; margin-bottom:15px;}
+  .hero h1{font-size:clamp(2.7rem,4.2vw,4.35rem); line-height:1.04; margin:0 0 19px; font-weight:500; color:#fff;}
+  .hero h1 .gold{color:var(--gold-soft);}
+  .hero p{max-width:56ch; font-size:clamp(.94rem,1.15vw,1.05rem); color:rgba(255,255,255,.84); margin:0 0 28px; line-height:1.65;}
   .hero-ctas{display:flex; gap:16px; flex-wrap:wrap;}
-  .hero-photo{position:relative; min-height:340px;}
-  @media (max-width:900px){ .hero-photo{height:300px;} }
-  .hero-photo img{width:100%; height:100%; object-fit:cover; object-position:center 30%; display:block;}
   .btn-gold{
     background:var(--gold); color:var(--navy); text-decoration:none; padding:14px 28px; font-weight:600;
     font-size:.9rem; letter-spacing:.01em; border-radius:2px; border:1px solid var(--gold);
@@ -99,6 +96,38 @@
   .btn-outline{
     border:1px solid rgba(255,255,255,.5); color:#fff; text-decoration:none; padding:14px 28px;
     font-size:.9rem; font-weight:600; border-radius:2px;
+  }
+  .hero-info{position:relative; z-index:1; background:rgba(8,19,36,.91); border-top:1px solid rgba(255,255,255,.18);}
+  .hero-info-grid{max-width:var(--wrap); margin:0 auto; padding:0 40px; display:grid; grid-template-columns:repeat(4,1fr);}
+  .hero-fact{padding:19px 24px; border-left:1px solid rgba(255,255,255,.14);}
+  .hero-fact:last-child{border-right:1px solid rgba(255,255,255,.14);}
+  .hero-fact dt{font-size:.66rem; text-transform:uppercase; letter-spacing:.13em; color:var(--gold-soft); font-weight:600;}
+  .hero-fact dd{margin:4px 0 0; font-family:'Fraunces',serif; font-size:.98rem; color:#fff;}
+  @media (max-width:900px){
+    nav,nav.solid{position:relative; background:var(--navy); padding:14px 22px; box-shadow:0 1px 0 var(--line-navy);}
+    .nav-cta{display:none;}
+    .hero{min-height:0; display:flex; flex-direction:column;}
+    .hero-media{position:relative; order:1; height:42svh; min-height:270px; max-height:430px;}
+    .hero-media::after{content:none;}
+    .hero-media img{object-position:center;}
+    .hero-main{order:2; padding:34px 22px 38px; display:block;}
+    .hero-copy{max-width:620px;}
+    .hero h1{font-size:clamp(2.15rem,7.4vw,3.15rem); line-height:1.06;}
+    .hero-info{order:3;}
+    .hero-info-grid{padding:0; grid-template-columns:repeat(2,1fr);}
+    .hero-fact{padding:17px 22px; border:0; border-top:1px solid rgba(255,255,255,.14);}
+    .hero-fact:nth-child(odd){border-right:1px solid rgba(255,255,255,.14);}
+  }
+  @media (max-width:480px){
+    .hero-media{height:40svh; min-height:245px;}
+    .hero-main{padding:29px 20px 34px;}
+    .hero .label{margin-bottom:12px;}
+    .hero h1{font-size:clamp(2rem,9vw,2.35rem); margin-bottom:16px;}
+    .hero p{font-size:.92rem; margin-bottom:24px;}
+    .hero-ctas{display:grid; grid-template-columns:1fr; gap:11px;}
+    .hero-ctas a{text-align:center; width:100%;}
+    .hero-fact{padding:15px 20px; min-width:0;}
+    .hero-fact dd{font-size:.88rem; overflow-wrap:anywhere;}
   }
 
   /* ---------- SECTION SHELL ---------- */
@@ -279,21 +308,34 @@
 </div>
 
 <header class="hero" id="top">
-  <div class="hero-split">
-    <div class="hero-text-col">
-      <div class="hero-text-inner">
-        <span class="label">Model Town, Lahore</span>
-        <h1>Knowledge. Character. Success.</h1>
-        <p>HPS has shaped students in Model Town since 1999, a school built around academics, discipline, and student leadership.</p>
-        <div class="hero-ctas">
-          <a class="btn-gold" href="#about">Explore HPS</a>
-          <a class="btn-outline" href="admissions.html">Admissions</a>
-        </div>
+  <picture class="hero-media">
+    <source media="(max-width: 820px)" srcset="images/hero-mobile-clean.webp">
+    <img
+      src="images/hero-desktop-clean.webp"
+      alt="Architectural rendering of the HPS Lahore campus"
+      width="1536"
+      height="820"
+      fetchpriority="high"
+    >
+  </picture>
+  <div class="hero-main">
+    <div class="hero-copy">
+      <span class="label">Founded in 1999</span>
+      <h1>Nurturing Minds.<br>Building Character.<br><span class="gold">Inspiring Success.</span></h1>
+      <p>HPS has shaped students in Model Town since 1999, with a learning experience built around strong academics, discipline, student leadership, and the Cambridge and Matric curricula.</p>
+      <div class="hero-ctas">
+        <a class="btn-gold" href="#about">Discover Our Story</a>
+        <a class="btn-outline" href="admissions.html">Apply Now</a>
       </div>
     </div>
-    <div class="hero-photo">
-      <img src="images/campus-lgs-optimus.jpg" alt="HPS students celebrating their medals at LGS Optimus" width="700" height="585" decoding="async">
-    </div>
+  </div>
+  <div class="hero-info" aria-label="HPS at a glance">
+    <dl class="hero-info-grid">
+      <div class="hero-fact"><dt>Established</dt><dd>1999</dd></div>
+      <div class="hero-fact"><dt>Curricula</dt><dd>Cambridge &amp; Matric</dd></div>
+      <div class="hero-fact"><dt>Location</dt><dd>Model Town, Lahore</dd></div>
+      <div class="hero-fact"><dt>Admissions</dt><dd>2026–27 Open</dd></div>
+    </dl>
   </div>
 </header>
 
@@ -305,7 +347,7 @@
     <div class="intro-text reveal">
       <span class="label">Welcome to HPS</span>
       <blockquote>"Quality education is every child's right."</blockquote>
-      <p class="body-copy">HPS was established in 1999 in Model Town, Lahore, inspired by the philosophy of Shaheed-e-Pakistan Hakim Muhammad Said. That founding idea, that quality education shouldn't be out of reach, still shapes how the school teaches today, across the Cambridge and Matric curricula.</p>
+      <p class="body-copy">HPS was established in 1999 in Model Town, Lahore. The belief that quality education shouldn't be out of reach still shapes how the school teaches today, across the Cambridge and Matric curricula.</p>
       <p class="quiet-note">Est. 1999 · Model Town, Lahore</p>
     </div>
   </div>
@@ -522,10 +564,32 @@
   var menuBtn = document.getElementById('menuBtn');
   var closeBtn = document.getElementById('closeBtn');
   var mobileMenu = document.getElementById('mobileMenu');
-  menuBtn.addEventListener('click', function(){ mobileMenu.classList.add('open'); });
-  closeBtn.addEventListener('click', function(){ mobileMenu.classList.remove('open'); });
+  function openMenu(){
+    mobileMenu.classList.add('open');
+    mobileMenu.setAttribute('aria-hidden', 'false');
+    menuBtn.setAttribute('aria-expanded', 'true');
+    closeBtn.focus();
+  }
+  function closeMenu(){
+    mobileMenu.classList.remove('open');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    menuBtn.focus();
+  }
+  menuBtn.setAttribute('aria-expanded', 'false');
+  menuBtn.setAttribute('aria-controls', 'mobileMenu');
+  mobileMenu.setAttribute('aria-hidden', 'true');
+  menuBtn.addEventListener('click', openMenu);
+  closeBtn.addEventListener('click', closeMenu);
   mobileMenu.querySelectorAll('a').forEach(function(a){
-    a.addEventListener('click', function(){ mobileMenu.classList.remove('open'); });
+    a.addEventListener('click', function(){
+      mobileMenu.classList.remove('open');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && mobileMenu.classList.contains('open')) closeMenu();
   });
 
   var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
