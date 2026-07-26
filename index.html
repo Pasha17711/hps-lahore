@@ -234,19 +234,20 @@
   .featured-leader p{max-width:52ch; margin:0; color:rgba(255,255,255,.76); line-height:1.75;}
   .featured-leader .leader-note{margin-top:24px; padding-top:16px; border-top:1px solid var(--line-navy); color:var(--gold-soft); font-family:'Fraunces',serif; font-size:1rem;}
   .secondary-leaders{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; margin:20px 0 62px;}
-  .leader-card{display:grid; grid-template-columns:170px 1fr; min-height:220px; background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
-  .leader-card img{width:100%; height:100%; min-height:220px; object-fit:cover; object-position:center top;}
+  .leader-card{display:grid; grid-template-columns:170px minmax(0,1fr); min-height:220px; min-width:0; background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
+  .leader-card-media{margin:0; min-height:220px; overflow:hidden; background:var(--ivory);}
+  .leader-card-media img{width:100%; height:100%; min-height:220px; object-fit:cover; object-position:center top;}
   .leader-card-copy{padding:25px 24px; display:flex; flex-direction:column; justify-content:center;}
   .leader-card h3{font-size:1.35rem; line-height:1.2; color:var(--navy); margin:9px 0 13px;}
   .leader-card p{font-size:.9rem; color:var(--ink-soft); line-height:1.7; margin:0;}
   .student-leadership-head{display:flex; align-items:end; justify-content:space-between; gap:24px; padding-top:38px; margin-bottom:24px; border-top:1px solid var(--line);}
   .student-leadership-head h3{font-size:1.65rem; color:var(--navy); margin:8px 0 0;}
-  .students-row{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; max-width:620px;}
-  @media (max-width:700px){ .students-row{grid-template-columns:repeat(2,1fr);} }
-  .student-card{text-align:center;}
-  .student-card img{width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:var(--radius); margin-bottom:12px;}
-  .student-card .role{font-size:.7rem; text-transform:uppercase; letter-spacing:.06em; color:var(--gold);}
-  .student-card .name{font-weight:600; font-size:.92rem; margin-top:2px;}
+  .students-row{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; max-width:none;}
+  .student-leader-card{display:grid; grid-template-columns:150px minmax(0,1fr); min-height:190px; min-width:0; background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
+  .student-leader-card img{width:100%; height:100%; min-height:190px; object-fit:cover; object-position:center top;}
+  .student-leader-copy{min-width:0; padding:24px; display:flex; flex-direction:column; justify-content:center;}
+  .student-leader-copy .role{font-size:.7rem; text-transform:uppercase; letter-spacing:.1em; color:var(--gold); font-weight:600;}
+  .student-leader-copy h4{margin:8px 0 0; overflow-wrap:anywhere; font-family:'Fraunces',serif; font-size:1.35rem; font-weight:600; color:var(--navy);}
   @media (min-width:901px){
     .leadership{padding:104px 0;}
     .leadership .wrap{max-width:1160px;}
@@ -258,6 +259,12 @@
     .secondary-leaders{grid-template-columns:1fr;}
     .leader-card{grid-template-columns:210px 1fr;}
   }
+  @media (max-width:700px){
+    .students-row{grid-template-columns:1fr; gap:16px;}
+    .student-leader-card{grid-template-columns:120px minmax(0,1fr); min-height:160px;}
+    .student-leader-card img{min-height:160px;}
+    .student-leader-copy{padding:20px;}
+  }
   @media (max-width:640px){
     .leadership .head{margin-bottom:34px;}
     .featured-leader img{aspect-ratio:4/5;}
@@ -265,9 +272,16 @@
     .featured-leader .leader-note{margin-top:24px;}
     .secondary-leaders{margin:18px 0 54px; gap:18px;}
     .leader-card{grid-template-columns:1fr; min-height:0;}
-    .leader-card img{height:auto; min-height:0; aspect-ratio:4/5;}
+    .leader-card-media{min-height:0; aspect-ratio:4/5;}
+    .leader-card-media img{width:100%; height:100%; min-height:0;}
+    .shaheen-card .leader-card-media img{object-fit:contain; object-position:center; background:var(--ivory);}
     .leader-card-copy{padding:26px 22px 30px;}
     .student-leadership-head{padding-top:36px; margin-bottom:24px;}
+  }
+  @media (max-width:360px){
+    .student-leader-card{grid-template-columns:105px minmax(0,1fr);}
+    .student-leader-copy{padding:17px;}
+    .student-leader-copy h4{font-size:1.18rem;}
   }
 
   /* ---------- NEWS ---------- */
@@ -502,15 +516,19 @@
     </article>
     <div class="secondary-leaders reveal">
       <article class="leader-card">
-        <img src="images/leadership-principal-deeba-saad.jpg" alt="Mrs. Deeba Saad, Principal of HPS" width="500" height="900" loading="lazy" decoding="async">
+        <figure class="leader-card-media">
+          <img src="images/leadership-principal-deeba-saad.jpg" alt="Mrs. Deeba Saad, Principal of HPS" width="500" height="900" loading="lazy" decoding="async">
+        </figure>
         <div class="leader-card-copy">
           <span class="leader-role">Principal</span>
           <h3>Mrs. Deeba Saad</h3>
           <p>An inspiring educational leader committed to academic excellence, innovation and the holistic development of every student.</p>
         </div>
       </article>
-      <article class="leader-card">
-        <img src="images/leadership-director-shaheen-chaudhry.jpg" alt="Mrs. Shaheen Chaudhry, Director of HPS" width="500" height="893" loading="lazy" decoding="async">
+      <article class="leader-card shaheen-card">
+        <figure class="leader-card-media">
+          <img src="images/leadership-director-shaheen-chaudhry.jpg" alt="Mrs. Shaheen Chaudhry, Director of HPS" width="500" height="893" loading="lazy" decoding="async">
+        </figure>
         <div class="leader-card-copy">
           <span class="leader-role">Director</span>
           <h3>Mrs. Shaheen Chaudhry</h3>
@@ -525,8 +543,20 @@
       </div>
     </div>
     <div class="students-row reveal">
-      <div class="student-card"><img src="images/leadership-head-boy-alizar.jpg" alt="Alizar Sheikh, Head Boy" width="500" height="680" loading="lazy" decoding="async"><div class="role">Head Boy 2025-26</div><div class="name">Alizar Sheikh</div></div>
-      <div class="student-card"><img src="images/leadership-head-girl-sara.jpg" alt="Sara Khan, Head Girl" width="500" height="662" loading="lazy" decoding="async"><div class="role">Head Girl 2025-26</div><div class="name">Sara Khan</div></div>
+      <article class="student-leader-card">
+        <img src="images/leadership-head-boy-alizar.jpg" alt="Alizar Sheikh, Head Boy" width="500" height="680" loading="lazy" decoding="async">
+        <div class="student-leader-copy">
+          <span class="role">Head Boy · 2025–26</span>
+          <h4>Alizar Sheikh</h4>
+        </div>
+      </article>
+      <article class="student-leader-card">
+        <img src="images/leadership-head-girl-sara.jpg" alt="Sara Khan, Head Girl" width="500" height="662" loading="lazy" decoding="async">
+        <div class="student-leader-copy">
+          <span class="role">Head Girl · 2025–26</span>
+          <h4>Sara Khan</h4>
+        </div>
+      </article>
     </div>
   </div>
 </section>
