@@ -224,21 +224,47 @@
 
   /* ---------- LEADERSHIP ---------- */
   .leadership{background:var(--ivory);}
-  .lead-grid{display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-bottom:60px;}
-  @media (max-width:860px){ .lead-grid{grid-template-columns:1fr;} }
-  .lead-card{display:flex; gap:20px;}
-  .lead-card img{width:96px; height:96px; border-radius:50%; object-fit:cover; flex-shrink:0;}
-  .lead-card blockquote{
-    font-family:'Fraunces',serif; font-size:1.05rem; font-style:italic; margin:0 0 10px; color:var(--navy); line-height:1.5;
-  }
-  .lead-card .role{font-size:.76rem; text-transform:uppercase; letter-spacing:.06em; color:var(--gold); font-weight:600;}
-  .lead-card .name{font-weight:600; font-size:.98rem;}
-  .students-row{display:grid; grid-template-columns:repeat(4,1fr); gap:24px; border-top:1px solid var(--line); padding-top:44px;}
+  .leadership .head{margin-bottom:48px;}
+  .leadership .head p{max-width:60ch;}
+  .featured-leader{display:grid; grid-template-columns:minmax(280px,.8fr) 1.2fr; min-height:430px; background:var(--navy); color:#fff; border-radius:var(--radius); overflow:hidden;}
+  .featured-leader img{width:100%; height:100%; min-height:430px; object-fit:cover; object-position:center top;}
+  .featured-leader-copy{padding:clamp(40px,5vw,72px); display:flex; flex-direction:column; justify-content:center;}
+  .leader-role{font-size:.72rem; text-transform:uppercase; letter-spacing:.12em; color:var(--gold-soft); font-weight:600;}
+  .featured-leader h3{font-size:clamp(1.8rem,3vw,2.7rem); line-height:1.15; margin:12px 0 20px; color:#fff;}
+  .featured-leader p{max-width:52ch; margin:0; color:rgba(255,255,255,.76); line-height:1.75;}
+  .featured-leader .leader-note{margin-top:30px; padding-top:18px; border-top:1px solid var(--line-navy); color:var(--gold-soft); font-family:'Fraunces',serif; font-size:1rem;}
+  .secondary-leaders{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; margin:24px 0 72px;}
+  .leader-card{display:grid; grid-template-columns:180px 1fr; min-height:245px; background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
+  .leader-card img{width:100%; height:100%; min-height:245px; object-fit:cover; object-position:center top;}
+  .leader-card-copy{padding:30px 28px; display:flex; flex-direction:column; justify-content:center;}
+  .leader-card h3{font-size:1.35rem; line-height:1.2; color:var(--navy); margin:9px 0 13px;}
+  .leader-card p{font-size:.9rem; color:var(--ink-soft); line-height:1.7; margin:0;}
+  .student-leadership-head{display:flex; align-items:end; justify-content:space-between; gap:24px; padding-top:44px; margin-bottom:28px; border-top:1px solid var(--line);}
+  .student-leadership-head h3{font-size:1.65rem; color:var(--navy); margin:8px 0 0;}
+  .students-row{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; max-width:620px;}
   @media (max-width:700px){ .students-row{grid-template-columns:repeat(2,1fr);} }
   .student-card{text-align:center;}
   .student-card img{width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:var(--radius); margin-bottom:12px;}
   .student-card .role{font-size:.7rem; text-transform:uppercase; letter-spacing:.06em; color:var(--gold);}
   .student-card .name{font-weight:600; font-size:.92rem; margin-top:2px;}
+  @media (max-width:900px){
+    .featured-leader{grid-template-columns:1fr; min-height:0;}
+    .featured-leader img{height:auto; min-height:0; aspect-ratio:16/10;}
+    .featured-leader-copy{padding:38px;}
+    .secondary-leaders{grid-template-columns:1fr;}
+    .leader-card{grid-template-columns:210px 1fr;}
+  }
+  @media (max-width:640px){
+    .leadership .head{margin-bottom:34px;}
+    .featured-leader img{aspect-ratio:4/5;}
+    .featured-leader-copy{padding:32px 24px 36px;}
+    .featured-leader .leader-note{margin-top:24px;}
+    .secondary-leaders{margin:18px 0 54px; gap:18px;}
+    .leader-card{grid-template-columns:1fr; min-height:0;}
+    .leader-card img{height:auto; min-height:0; aspect-ratio:4/5;}
+    .leader-card-copy{padding:26px 22px 30px;}
+    .student-leadership-head{padding-top:36px; margin-bottom:24px;}
+  }
 
   /* ---------- NEWS ---------- */
   .news{background:var(--paper);}
@@ -459,23 +485,39 @@
     <div class="head reveal">
       <span class="label">Meet the Team</span>
       <h2>The people behind HPS</h2>
+      <p>Experienced. Visionary. Committed to shaping the leaders of tomorrow.</p>
     </div>
-    <div class="lead-grid reveal">
-      <div class="lead-card">
-        <img src="images/leadership-principal-deeba-saad.jpg" alt="Mrs Deeba Saad, Principal, HPS" width="500" height="900" loading="lazy" decoding="async">
-        <div>
-          <div class="role">Principal</div>
-          <div class="name">Mrs. Deeba Saad</div>
-          <blockquote>"HPS feels like home, the warmth, teamwork, and sense of community have kept me rooted here."</blockquote>
-        </div>
+    <article class="featured-leader reveal">
+      <img src="images/leadership-director-kamal-pasha-chaudhry.jpg" alt="Kamal Pasha Chaudhry, Director of HPS" width="612" height="612" loading="lazy" decoding="async">
+      <div class="featured-leader-copy">
+        <span class="leader-role">Director</span>
+        <h3>Kamal Pasha Chaudhry</h3>
+        <p>With a lifelong dedication to education, Kamal Pasha Chaudhry brings vision, integrity and a deep commitment to excellence in all that HPS stands for.</p>
+        <p class="leader-note">Guiding HPS with purpose. Inspiring generations.</p>
       </div>
-      <div class="lead-card">
-        <img src="images/leadership-director-shaheen-chaudhry.jpg" alt="Mrs Shaheen Chaudhry, Director, HPS" width="500" height="893" loading="lazy" decoding="async">
-        <div>
-          <div class="role">Director</div>
-          <div class="name">Mrs. Shaheen Chaudhry</div>
-          <blockquote>"Education here means building strong values, well-mannered, respectful, and disciplined students."</blockquote>
+    </article>
+    <div class="secondary-leaders reveal">
+      <article class="leader-card">
+        <img src="images/leadership-principal-deeba-saad.jpg" alt="Mrs. Deeba Saad, Principal of HPS" width="500" height="900" loading="lazy" decoding="async">
+        <div class="leader-card-copy">
+          <span class="leader-role">Principal</span>
+          <h3>Mrs. Deeba Saad</h3>
+          <p>An inspiring educational leader committed to academic excellence, innovation and the holistic development of every student.</p>
         </div>
+      </article>
+      <article class="leader-card">
+        <img src="images/leadership-director-shaheen-chaudhry.jpg" alt="Mrs. Shaheen Chaudhry, Director of HPS" width="500" height="893" loading="lazy" decoding="async">
+        <div class="leader-card-copy">
+          <span class="leader-role">Director</span>
+          <h3>Mrs. Shaheen Chaudhry</h3>
+          <p>A strong advocate for values-based education and student well-being, driving a culture of care and continuous growth.</p>
+        </div>
+      </article>
+    </div>
+    <div class="student-leadership-head reveal">
+      <div>
+        <span class="label">Student Leadership</span>
+        <h3>Leading by example</h3>
       </div>
     </div>
     <div class="students-row reveal">
