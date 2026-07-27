@@ -62,12 +62,12 @@
   nav{
     position:fixed; top:0; left:0; right:0; z-index:100;
     display:flex; align-items:center; justify-content:space-between;
-    padding:16px 40px; transition:background .35s ease, padding .35s ease, box-shadow .35s ease;
+    padding:10px 40px; transition:background .35s ease, padding .35s ease, box-shadow .35s ease;
   }
-  nav.solid{background:var(--navy); padding:10px 40px; box-shadow:0 1px 0 var(--line-navy);}
-  .brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:#fff;}
-  .brand img{width:40px; height:40px; border-radius:50%; object-fit:cover;}
-  .brand span{font-family:'Fraunces',serif; font-weight:600; font-size:1.12rem; letter-spacing:.08em;}
+  nav.solid{background:var(--navy); padding:6px 40px; box-shadow:0 1px 0 var(--line-navy);}
+  .brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:#fff;}
+  .brand img{width:52px; height:52px; border-radius:50%; object-fit:cover;}
+  .brand span{font-family:'Fraunces',serif; font-weight:600; font-size:1.4375rem; letter-spacing:.08em;}
   .navlinks{display:flex; gap:32px; list-style:none; margin:0; padding:0;}
   .navlinks a{color:rgba(255,255,255,.82); text-decoration:none; font-size:.86rem; font-weight:500;}
   .navlinks a:hover{color:#fff;}
@@ -114,6 +114,9 @@
   .hero-fact:last-child{border-right:1px solid rgba(255,255,255,.14);}
   .hero-fact dt{font-size:.66rem; text-transform:uppercase; letter-spacing:.13em; color:var(--gold-soft); font-weight:600;}
   .hero-fact dd{margin:4px 0 0; font-family:'Fraunces',serif; font-size:.98rem; color:#fff;}
+  .map-link{color:inherit; text-decoration:underline; text-decoration-color:rgba(255,255,255,.4); text-decoration-thickness:1px; text-underline-offset:3px;}
+  .map-link:hover{text-decoration-color:currentColor;}
+  .map-link:focus-visible{outline:2px solid var(--gold-soft); outline-offset:3px; border-radius:1px;}
   @media (max-width:900px){
     nav,nav.solid{position:relative; background:var(--navy); padding:10px 22px; box-shadow:0 1px 0 var(--line-navy);}
     .nav-cta{display:none;}
@@ -129,8 +132,16 @@
     .hero-fact{padding:17px 22px; border:0; border-top:1px solid rgba(255,255,255,.14);}
     .hero-fact:nth-child(odd){border-right:1px solid rgba(255,255,255,.14);}
   }
+  @media (max-width:640px){
+    nav,nav.solid{padding:7px 22px;}
+    .brand{gap:10px;}
+    .brand img{width:46px; height:46px;}
+    .brand span{font-size:1.25rem;}
+    .hero-main{order:1;}
+    .hero-media{order:2; width:100%; height:290px; min-height:0; max-height:none;}
+    .hero-media img{object-fit:cover; object-position:center 58%;}
+  }
   @media (max-width:480px){
-    .hero-media{height:40svh; min-height:245px;}
     .hero-main{padding:29px 20px 34px;}
     .hero .label{margin-bottom:12px;}
     .hero h1{font-size:clamp(2rem,9vw,2.35rem); margin-bottom:16px;}
@@ -282,7 +293,6 @@
     .featured-leader-copy{padding:32px 24px 36px;}
     .featured-leader .leader-note{margin-top:24px;}
     .secondary-leaders{margin:18px 0 54px; gap:18px;}
-    .shaheen-card{order:-1;}
     .leader-card{grid-template-columns:1fr; min-height:0;}
     .leader-card-media{min-height:0; aspect-ratio:4/5;}
     .leader-card-media img{width:100%; height:100%; min-height:0;}
@@ -413,7 +423,7 @@
     <dl class="hero-info-grid">
       <div class="hero-fact"><dt>Established</dt><dd>1999</dd></div>
       <div class="hero-fact"><dt>Curricula</dt><dd>Cambridge &amp; Matric</dd></div>
-      <div class="hero-fact"><dt>Location</dt><dd>Model Town, Lahore</dd></div>
+      <div class="hero-fact"><dt>Location</dt><dd><a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=HPS%2C+4-J+Model+Town%2C+Lahore" target="_blank" rel="noopener noreferrer" aria-label="Open HPS location in Google Maps">4-J Model Town, Lahore</a></dd></div>
       <div class="hero-fact"><dt>Admissions</dt><dd>2026–27 Open</dd></div>
     </dl>
   </div>
@@ -551,16 +561,6 @@
       </div>
     </article>
     <div class="secondary-leaders reveal">
-      <article class="leader-card">
-        <figure class="leader-card-media">
-          <img src="images/leadership-principal-deeba-saad.jpg" alt="Mrs. Deeba Saad, Principal of HPS" width="500" height="900" loading="lazy" decoding="async">
-        </figure>
-        <div class="leader-card-copy">
-          <span class="leader-role">Principal</span>
-          <h3>Mrs. Deeba Saad</h3>
-          <p>An inspiring educational leader committed to academic excellence, innovation and the holistic development of every student.</p>
-        </div>
-      </article>
       <article class="leader-card shaheen-card">
         <figure class="leader-card-media">
           <img src="images/leadership-director-shaheen-chaudhry.jpg" alt="Mrs. Shaheen Chaudhry, Director of HPS" width="500" height="893" loading="lazy" decoding="async">
@@ -569,6 +569,16 @@
           <span class="leader-role">Director</span>
           <h3>Mrs. Shaheen Chaudhry</h3>
           <p>A strong advocate for values-based education and student well-being, driving a culture of care and continuous growth.</p>
+        </div>
+      </article>
+      <article class="leader-card">
+        <figure class="leader-card-media">
+          <img src="images/leadership-principal-deeba-saad.jpg" alt="Mrs. Deeba Saad, Principal of HPS" width="500" height="900" loading="lazy" decoding="async">
+        </figure>
+        <div class="leader-card-copy">
+          <span class="leader-role">Principal</span>
+          <h3>Mrs. Deeba Saad</h3>
+          <p>An inspiring educational leader committed to academic excellence, innovation and the holistic development of every student.</p>
         </div>
       </article>
     </div>
@@ -643,7 +653,7 @@
     <div class="foot-grid">
       <div>
         <div class="foot-brand"><img src="images/logo.jpg" alt="HPS" width="240" height="240" decoding="async" loading="lazy"><span>HPS</span></div>
-        <p>4-J, Model Town<br>Lahore, Pakistan</p>
+        <p><a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=HPS%2C+4-J+Model+Town%2C+Lahore" target="_blank" rel="noopener noreferrer" aria-label="Open HPS location in Google Maps">4-J, Model Town<br>Lahore, Pakistan</a></p>
       </div>
       <div>
         <h4>Explore</h4>
