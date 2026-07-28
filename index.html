@@ -253,6 +253,46 @@
     .hero-fact dd{font-size:.88rem; overflow-wrap:anywhere;}
   }
 
+  /* ---------- LIFE AT HPS VIDEO STORY ---------- */
+  .life-story{background:var(--navy); color:var(--ivory); overflow:hidden; padding:108px 0 116px;}
+  .life-story-inner{max-width:var(--wrap); margin:0 auto; padding:0 40px;}
+  .life-story-head{display:grid; grid-template-columns:minmax(0,.82fr) minmax(320px,.58fr); gap:70px; align-items:end; margin-bottom:46px; opacity:0; transform:translateY(14px); transition:opacity .62s ease,transform .62s ease;}
+  .life-story.is-visible .life-story-head{opacity:1; transform:none;}
+  .life-story .label{display:block; color:var(--gold-soft); margin-bottom:13px;}
+  .life-story h2{max-width:720px; margin:0; color:var(--ivory); font-size:clamp(2.15rem,4vw,3.7rem); line-height:1.06; font-weight:500;}
+  .life-story-copy{margin:0; padding-top:18px; border-top:1px solid rgba(199,164,104,.52); color:rgba(247,243,234,.76); font-size:.98rem; line-height:1.75;}
+  .life-story-triptych{display:grid; grid-template-columns:1fr 1.3fr 1fr; height:clamp(460px,49vw,640px); border-block:1px solid rgba(199,164,104,.5); background:#081324; opacity:0; transform:translateY(18px); transition:opacity .72s ease .08s,transform .72s ease .08s,grid-template-columns .78s cubic-bezier(.22,1,.36,1) .08s;}
+  .life-story.is-visible .life-story-triptych{grid-template-columns:1fr 1.5fr 1fr; opacity:1; transform:none;}
+  .life-story-panel{position:relative; min-width:0; margin:0; overflow:hidden; background:#081324;}
+  .life-story-panel+.life-story-panel{border-left:1px solid rgba(199,164,104,.62);}
+  .life-story-panel:nth-child(1){transition:transform .64s ease .14s; transform:translateY(10px);}
+  .life-story-panel:nth-child(2){transition:transform .64s ease .08s; transform:translateY(6px);}
+  .life-story-panel:nth-child(3){transition:transform .64s ease .2s; transform:translateY(10px);}
+  .life-story.is-visible .life-story-panel{transform:none;}
+  .life-story-video{display:block; width:100%; height:100%; object-fit:contain; background:#081324;}
+  .life-story-caption{position:absolute; left:0; right:0; bottom:0; padding:48px 20px 18px; color:var(--ivory); background:linear-gradient(to top,rgba(8,19,36,.9),rgba(8,19,36,0)); font-size:.68rem; font-weight:600; letter-spacing:.12em; line-height:1.4; text-transform:uppercase; pointer-events:none;}
+  .life-story-mobile{display:none;}
+  @media (max-width:900px){
+    .life-story-head{grid-template-columns:1fr; gap:24px;}
+    .life-story-copy{max-width:620px;}
+    .life-story-triptych{height:500px;}
+  }
+  @media (max-width:760px){
+    .life-story{padding:74px 0 80px;}
+    .life-story-inner{padding:0 22px;}
+    .life-story-head{margin-bottom:32px;}
+    .life-story h2{font-size:clamp(2.05rem,9vw,2.75rem);}
+    .life-story-copy{font-size:.93rem;}
+    .life-story-triptych{display:none;}
+    .life-story-mobile{display:block; max-width:480px; margin:0 auto; padding-top:12px; border-top:1px solid rgba(199,164,104,.62); opacity:0; transform:translateY(16px); transition:opacity .7s ease .08s,transform .7s ease .08s;}
+    .life-story.is-visible .life-story-mobile{opacity:1; transform:none;}
+    .life-story-mobile-frame{position:relative; margin:0; aspect-ratio:9/16; overflow:hidden; background:#081324; border:1px solid rgba(247,243,234,.12);}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .life-story-head,.life-story-triptych,.life-story-mobile,.life-story-panel{opacity:1; transform:none; transition:none;}
+    .life-story-triptych,.life-story.is-visible .life-story-triptych{grid-template-columns:1fr 1.5fr 1fr;}
+  }
+
   /* ---------- SECTION SHELL ---------- */
   section{padding:120px 0;}
   @media (max-width:700px){ section{padding:76px 0;} }
@@ -547,6 +587,39 @@
     </dl>
   </div>
 </header>
+
+<section class="life-story" id="life-story" aria-labelledby="life-story-title">
+  <div class="life-story-inner">
+    <div class="life-story-head">
+      <div>
+        <span class="label">Life at HPS</span>
+        <h2 id="life-story-title">Curious minds. Confident lives.</h2>
+      </div>
+      <p class="life-story-copy">From purposeful learning and competition to friendships, journeys and shared experiences, life at HPS extends far beyond the classroom.</p>
+    </div>
+
+    <div class="life-story-triptych" aria-hidden="true">
+      <figure class="life-story-panel">
+        <video class="life-story-video" muted loop playsinline preload="metadata" data-src="videos/hps-life-left.mp4" data-poster="images/hps-life-left-poster.webp" tabindex="-1"></video>
+        <figcaption class="life-story-caption">Learning &amp; Well-being</figcaption>
+      </figure>
+      <figure class="life-story-panel">
+        <video class="life-story-video" muted loop playsinline preload="metadata" data-src="videos/hps-life-center.mp4" data-poster="images/hps-life-center-poster.webp" tabindex="-1"></video>
+        <figcaption class="life-story-caption">Community &amp; Exploration</figcaption>
+      </figure>
+      <figure class="life-story-panel">
+        <video class="life-story-video" muted loop playsinline preload="metadata" data-src="videos/hps-life-right.mp4" data-poster="images/hps-life-right-poster.webp" tabindex="-1"></video>
+        <figcaption class="life-story-caption">Sport &amp; Achievement</figcaption>
+      </figure>
+    </div>
+
+    <div class="life-story-mobile" aria-hidden="true">
+      <figure class="life-story-mobile-frame">
+        <video class="life-story-video" muted loop playsinline preload="metadata" data-src="videos/hps-life-mobile.mp4" data-poster="images/hps-life-mobile-poster.webp" tabindex="-1"></video>
+      </figure>
+    </div>
+  </div>
+</section>
 
 <section class="intro" id="about">
   <div class="wrap intro-grid">
@@ -849,6 +922,71 @@
     document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
   } else {
     document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+
+  var lifeStory = document.getElementById('life-story');
+  if (lifeStory) {
+    var mobileStoryQuery = window.matchMedia('(max-width: 760px)');
+    var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    var saveData = Boolean(connection && connection.saveData);
+    var storyVideos = [];
+
+    function activeStoryVideos(){
+      return Array.prototype.slice.call(lifeStory.querySelectorAll(mobileStoryQuery.matches ? '.life-story-mobile video' : '.life-story-triptych video'));
+    }
+    function prepareStoryVideos(){
+      storyVideos.forEach(function(video){ video.pause(); });
+      storyVideos = activeStoryVideos();
+      storyVideos.forEach(function(video){
+        if (!video.poster) video.poster = video.getAttribute('data-poster');
+        video.addEventListener('error', function(){
+          video.pause();
+          video.removeAttribute('src');
+          video.load();
+        }, {once:true});
+      });
+    }
+    function loadAndPlayStoryVideos(){
+      if (prefersReduced || saveData) return;
+      storyVideos.forEach(function(video){
+        if (!video.getAttribute('src')) {
+          video.src = video.getAttribute('data-src');
+          video.load();
+        }
+        var playback = video.play();
+        if (playback && typeof playback.catch === 'function') playback.catch(function(){});
+      });
+    }
+    function pauseStoryVideos(){
+      storyVideos.forEach(function(video){ video.pause(); });
+    }
+    function handleStoryBreakpoint(){
+      pauseStoryVideos();
+      prepareStoryVideos();
+    }
+
+    prepareStoryVideos();
+    if (typeof mobileStoryQuery.addEventListener === 'function') mobileStoryQuery.addEventListener('change', handleStoryBreakpoint);
+    else if (typeof mobileStoryQuery.addListener === 'function') mobileStoryQuery.addListener(handleStoryBreakpoint);
+
+    if (prefersReduced) {
+      lifeStory.classList.add('is-visible');
+    } else if ('IntersectionObserver' in window) {
+      var storyObserver = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (entry.isIntersecting) {
+            lifeStory.classList.add('is-visible');
+            loadAndPlayStoryVideos();
+          } else {
+            pauseStoryVideos();
+          }
+        });
+      }, {rootMargin:'250px 0px',threshold:0});
+      storyObserver.observe(lifeStory);
+    } else {
+      lifeStory.classList.add('is-visible');
+      loadAndPlayStoryVideos();
+    }
   }
 })();
 </script>
