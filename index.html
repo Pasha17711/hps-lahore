@@ -22,10 +22,11 @@
 <meta name="twitter:description" content="A school in Model Town, Lahore teaching the Cambridge and Matric curricula. Admissions 2026–27 are open.">
 <meta name="twitter:image" content="https://hpslahore.com/images/hero-auditorium.jpg">
 <link rel="icon" href="images/logo.jpg">
+<style>html,body{background:#0d1c33}</style>
 <script>
 (function(){
   var root = document.documentElement;
-  var key = 'hpsIntroSeenV1';
+  var key = 'hpsIntroSeenV2';
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   try {
     if (window.sessionStorage.getItem(key)) return;
@@ -33,6 +34,7 @@
   } catch (e) {}
   root.classList.add('intro-enabled', 'intro-active');
   var finished = false;
+  var dismissing = false;
   var normalTimer;
   var fallbackTimer;
   function finishIntro(){
@@ -40,20 +42,27 @@
     finished = true;
     window.clearTimeout(normalTimer);
     window.clearTimeout(fallbackTimer);
-    root.classList.remove('intro-enabled', 'intro-active');
+    root.classList.remove('intro-enabled', 'intro-active', 'intro-dismissing');
     var intro = document.getElementById('hpsIntro');
     if (intro) intro.remove();
-    document.removeEventListener('click', finishIntro);
+    document.removeEventListener('click', dismissIntro);
     document.removeEventListener('keydown', dismissWithEscape);
   }
+  function dismissIntro(){
+    if (finished || dismissing) return;
+    dismissing = true;
+    window.clearTimeout(normalTimer);
+    root.classList.add('intro-dismissing');
+    window.setTimeout(finishIntro, 420);
+  }
   function dismissWithEscape(e){
-    if (e.key === 'Escape') finishIntro();
+    if (e.key === 'Escape') dismissIntro();
   }
   window.hpsFinishIntro = finishIntro;
-  document.addEventListener('click', finishIntro);
+  document.addEventListener('click', dismissIntro);
   document.addEventListener('keydown', dismissWithEscape);
-  normalTimer = window.setTimeout(finishIntro, 1800);
-  fallbackTimer = window.setTimeout(finishIntro, 2400);
+  normalTimer = window.setTimeout(finishIntro, 3100);
+  fallbackTimer = window.setTimeout(finishIntro, 3600);
 })();
 </script>
 <style>
@@ -72,7 +81,7 @@
     --wrap:1280px;
   }
   *{box-sizing:border-box;}
-  html{scroll-behavior:smooth; scroll-padding-top:88px;}
+  html{background:var(--navy); scroll-behavior:smooth; scroll-padding-top:88px;}
   @media (max-width:700px){ html{scroll-padding-top:68px;} }
   body{
     margin:0; background:var(--paper); color:var(--ink);
@@ -92,33 +101,48 @@
   @media (prefers-reduced-motion: reduce){ .reveal{opacity:1; transform:none; transition:none;} }
 
   /* ---------- OPENING ---------- */
-  .hps-intro{display:none; position:fixed; inset:0; z-index:10000; overflow:hidden; background:var(--ivory); cursor:pointer;}
+  .hps-intro{display:none; position:fixed; inset:0; width:100%; min-height:100vh; height:100dvh; z-index:10000; overflow:hidden; background:transparent; cursor:pointer; perspective:1200px;}
   .intro-enabled .hps-intro{display:block;}
-  .intro-active body{overflow:hidden;}
-  .hps-intro-panel{position:absolute; inset-block:0; width:50%; background:var(--ivory); will-change:transform;}
-  .hps-intro-panel-left{left:0; transform-origin:left center; animation:hpsPanelLeft .72s cubic-bezier(.22,1,.36,1) .78s both;}
-  .hps-intro-panel-right{right:0; transform-origin:right center; animation:hpsPanelRight .72s cubic-bezier(.22,1,.36,1) .78s both;}
-  .hps-intro-identity{position:absolute; inset:0; z-index:1; display:flex; flex-direction:column; align-items:center; justify-content:center; color:var(--navy); pointer-events:none; animation:hpsIdentity .72s cubic-bezier(.22,1,.36,1) .06s both, hpsIdentityExit .24s ease .72s forwards;}
-  .hps-intro-logo{width:clamp(105px,11vw,150px); height:clamp(105px,11vw,150px); border-radius:50%; object-fit:cover;}
-  .hps-intro-location{margin-top:19px; font-size:.72rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase;}
-  .hps-intro-line{width:96px; height:1px; margin-top:15px; background:var(--gold); transform-origin:center; animation:hpsLine .38s cubic-bezier(.22,1,.36,1) .34s both;}
-  .intro-enabled .opening-nav-reveal{animation:hpsRevealDown .62s cubic-bezier(.22,1,.36,1) .76s both;}
-  .intro-enabled .hero-opening-label{animation:hpsRevealUp .58s cubic-bezier(.22,1,.36,1) .8s both;}
-  .intro-enabled .hero-opening-title{animation:hpsRevealUp .62s cubic-bezier(.22,1,.36,1) .88s both;}
-  .intro-enabled .hero-opening-copy{animation:hpsRevealUp .62s cubic-bezier(.22,1,.36,1) .96s both;}
-  .intro-enabled .hero-opening-actions{animation:hpsRevealUp .62s cubic-bezier(.22,1,.36,1) 1.04s both;}
-  .intro-enabled .hero-opening-media{animation:hpsMediaReveal .78s cubic-bezier(.22,1,.36,1) .76s both;}
-  .intro-enabled .hero-opening-info{animation:hpsRevealUp .62s cubic-bezier(.22,1,.36,1) 1.08s both;}
-  @keyframes hpsIdentity{from{opacity:0; transform:scale(.88);} to{opacity:1; transform:scale(1);}}
-  @keyframes hpsIdentityExit{to{opacity:0; transform:scale(.98);}}
-  @keyframes hpsLine{from{transform:scaleX(0);} to{transform:scaleX(1);}}
-  @keyframes hpsPanelLeft{to{transform:translateX(-101%);}}
-  @keyframes hpsPanelRight{to{transform:translateX(101%);}}
+  .intro-active body{overflow:hidden; background:var(--navy);}
+  .intro-active body>section,.intro-active body>footer{opacity:0;}
+  .hps-intro-panel{position:absolute; inset-block:0; z-index:1; width:50.1%; background:var(--navy); will-change:transform; backface-visibility:hidden;}
+  .hps-intro-panel-left{left:0; transform-origin:right center; box-shadow:14px 0 28px rgba(0,0,0,.16); animation:hpsPanelLeft 1.2s cubic-bezier(.65,0,.35,1) 1.45s both;}
+  .hps-intro-panel-right{right:0; transform-origin:left center; box-shadow:-14px 0 28px rgba(0,0,0,.16); animation:hpsPanelRight 1.2s cubic-bezier(.65,0,.35,1) 1.48s both;}
+  .hps-intro-fold{position:absolute; inset-block:0; width:1px; background:rgba(255,255,255,.035); box-shadow:9px 0 18px rgba(0,0,0,.045);}
+  .hps-intro-panel-left .hps-intro-fold:nth-child(1),.hps-intro-panel-right .hps-intro-fold:nth-child(1){left:24%;}
+  .hps-intro-panel-left .hps-intro-fold:nth-child(2),.hps-intro-panel-right .hps-intro-fold:nth-child(2){left:52%;}
+  .hps-intro-panel-left .hps-intro-fold:nth-child(3),.hps-intro-panel-right .hps-intro-fold:nth-child(3){left:78%;}
+  .hps-intro-seam{position:absolute; top:0; bottom:0; left:50%; z-index:2; width:1px; background:rgba(165,129,63,.78); transform:translateX(-.5px); animation:hpsSeamExit .36s ease 1.45s forwards;}
+  .hps-intro-identity{position:absolute; inset:0; z-index:3; display:flex; flex-direction:column; align-items:center; justify-content:center; color:var(--ivory); pointer-events:none; animation:hpsIdentityExit .55s cubic-bezier(.22,1,.36,1) 2.1s forwards;}
+  .hps-intro-logo{width:clamp(135px,10.5vw,150px); height:clamp(135px,10.5vw,150px); border-radius:50%; object-fit:cover; animation:hpsLogo .55s cubic-bezier(.22,1,.36,1) .3s both;}
+  .hps-intro-location{margin-top:19px; font-size:.72rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; animation:hpsIdentityText .4s cubic-bezier(.22,1,.36,1) .65s both;}
+  .hps-intro-line{width:96px; height:1px; margin-top:15px; background:var(--gold); transform-origin:center; animation:hpsLine .35s cubic-bezier(.22,1,.36,1) .72s both;}
+  .intro-enabled .opening-nav-reveal{animation:hpsRevealDown .52s cubic-bezier(.22,1,.36,1) 2.12s both;}
+  .intro-enabled .hero-opening-label{animation:hpsRevealUp .5s cubic-bezier(.22,1,.36,1) 2.2s both;}
+  .intro-enabled .hero-opening-title{animation:hpsRevealUp .54s cubic-bezier(.22,1,.36,1) 2.28s both;}
+  .intro-enabled .hero-opening-copy{animation:hpsRevealUp .52s cubic-bezier(.22,1,.36,1) 2.36s both;}
+  .intro-enabled .hero-opening-actions{animation:hpsRevealUp .5s cubic-bezier(.22,1,.36,1) 2.44s both;}
+  .intro-enabled .hero-opening-media{animation:hpsMediaReveal 1.2s cubic-bezier(.65,0,.35,1) 1.45s both;}
+  .intro-enabled .hero-opening-info{animation:hpsRevealUp .48s cubic-bezier(.22,1,.36,1) 2.52s both;}
+  .intro-dismissing .hps-intro-panel{animation:none; transition:transform .4s cubic-bezier(.65,0,.35,1);}
+  .intro-dismissing .hps-intro-panel-left{transform:translateX(-102%) scaleX(.92);}
+  .intro-dismissing .hps-intro-panel-right{transform:translateX(102%) scaleX(.92);}
+  .intro-dismissing .hps-intro-identity{animation:none; opacity:0; transform:scale(.97); transition:opacity .24s ease,transform .3s ease;}
+  .intro-dismissing .hps-intro-seam{animation:none; opacity:0; transition:opacity .18s ease;}
+  .intro-dismissing .opening-nav-reveal,.intro-dismissing .hero-opening-label,.intro-dismissing .hero-opening-title,.intro-dismissing .hero-opening-copy,.intro-dismissing .hero-opening-actions,.intro-dismissing .hero-opening-info{animation:hpsRevealUp .36s cubic-bezier(.22,1,.36,1) both;}
+  .intro-dismissing .hero-opening-media{animation:hpsMediaReveal .4s cubic-bezier(.22,1,.36,1) both;}
+  @keyframes hpsLogo{from{opacity:0; transform:scale(.94);} to{opacity:1; transform:scale(1);}}
+  @keyframes hpsIdentityText{from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);}}
+  @keyframes hpsIdentityExit{to{opacity:0; transform:scale(.975);}}
+  @keyframes hpsLine{from{opacity:0; transform:scaleX(0);} to{opacity:1; transform:scaleX(1);}}
+  @keyframes hpsSeamExit{to{opacity:0;}}
+  @keyframes hpsPanelLeft{to{transform:translateX(-102%) scaleX(.92);}}
+  @keyframes hpsPanelRight{to{transform:translateX(102%) scaleX(.92);}}
   @keyframes hpsRevealDown{from{opacity:0; transform:translateY(-14px);} to{opacity:1; transform:translateY(0);}}
   @keyframes hpsRevealUp{from{opacity:0; transform:translateY(15px);} to{opacity:1; transform:translateY(0);}}
-  @keyframes hpsMediaReveal{from{opacity:0; transform:scale(1.018);} to{opacity:1; transform:scale(1);}}
+  @keyframes hpsMediaReveal{from{transform:scale(1.006);} to{transform:scale(1);}}
   @media (max-width:640px){
-    .hps-intro-logo{width:112px; height:112px;}
+    .hps-intro-logo{width:110px; height:110px;}
     .hps-intro-location{font-size:.66rem; margin-top:17px;}
   }
   @media (prefers-reduced-motion: reduce){
@@ -443,8 +467,13 @@
 <body>
 
 <div class="hps-intro" id="hpsIntro" aria-hidden="true">
-  <div class="hps-intro-panel hps-intro-panel-left"></div>
-  <div class="hps-intro-panel hps-intro-panel-right"></div>
+  <div class="hps-intro-panel hps-intro-panel-left">
+    <i class="hps-intro-fold"></i><i class="hps-intro-fold"></i><i class="hps-intro-fold"></i>
+  </div>
+  <div class="hps-intro-panel hps-intro-panel-right">
+    <i class="hps-intro-fold"></i><i class="hps-intro-fold"></i><i class="hps-intro-fold"></i>
+  </div>
+  <div class="hps-intro-seam"></div>
   <div class="hps-intro-identity">
     <img class="hps-intro-logo" src="images/logo.jpg" alt="" width="240" height="240" decoding="async">
     <div class="hps-intro-location">Model Town · Lahore</div>
