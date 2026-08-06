@@ -400,18 +400,88 @@
   .achievements{background:var(--navy); color:#fff;}
   .achievements .label{color:var(--gold-soft);}
   .achievements .head p{color:rgba(255,255,255,.65);}
-  .a-grid{display:grid; grid-template-columns:1fr 1.15fr; gap:70px;}
-  @media (max-width:900px){ .a-grid{grid-template-columns:1fr; gap:40px;} }
-  .a-photo{aspect-ratio:1/1; overflow:hidden; border-radius:var(--radius);}
-  .a-photo img{width:100%; height:100%; object-fit:cover;}
-  .timeline{border-top:1px solid var(--line-navy);}
-  .t-row{display:grid; grid-template-columns:70px 1fr; gap:22px; padding:24px 0; border-bottom:1px solid var(--line-navy);}
-  .t-row .yr{font-family:'Fraunces',serif; color:var(--gold-soft); font-size:1rem; padding-top:2px;}
-  .t-row h4{margin:0 0 6px; font-size:1.05rem; font-weight:600;}
-  .t-row p{margin:0; font-size:.9rem; color:rgba(255,255,255,.68); line-height:1.6;}
+  .a-grid{display:grid; grid-template-columns:minmax(300px,1fr) 1.15fr; gap:70px; align-items:start;}
+  .a-photo{position:sticky; top:112px; aspect-ratio:4/5; max-height:calc(100vh - 150px); overflow:hidden; border-radius:var(--radius); background:#091629;}
+  .achievement-frame{position:absolute; inset:0; margin:0; overflow:hidden; background:#091629; opacity:0; visibility:hidden; transition:opacity 650ms ease, visibility 650ms ease;}
+  .achievement-frame::after{content:""; position:absolute; inset:0; z-index:2; background:var(--gold); transform:translateX(-101%); pointer-events:none;}
+  .achievement-frame img{width:100%; height:100%; object-fit:cover; transform:scale(1); transition:transform 650ms cubic-bezier(.22,.61,.36,1);}
+  .achievement-frame[data-achievement="0"] img{object-position:center 45%;}
+  .achievement-frame.is-active{opacity:1; visibility:visible; z-index:1;}
+  .achievement-frame.is-active img{transform:scale(1.012);}
+  .achievement-frame.is-wiping::after{animation:achievementMask 650ms cubic-bezier(.77,0,.18,1) both;}
+  @keyframes achievementMask{0%{transform:translateX(-101%)}48%{transform:translateX(0)}52%{transform:translateX(0)}100%{transform:translateX(101%)}}
+  .mobile-achievement-media{display:none;}
+  .achievement-carousel-controls{display:none;}
+  .achievement-status{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;}
+  .timeline{--achievement-progress:0%; position:relative; border-top:1px solid var(--line-navy); padding-left:24px;}
+  .timeline::before,.timeline::after{content:""; position:absolute; left:0; top:0; width:1px;}
+  .timeline::before{bottom:0; background:rgba(199,164,104,.22);}
+  .timeline::after{height:var(--achievement-progress); background:var(--gold-soft); transition:height 650ms cubic-bezier(.22,.61,.36,1);}
+  .t-row{position:relative; display:grid; grid-template-columns:70px 1fr; gap:22px; min-height:clamp(250px,42vh,390px); padding:42px 0; border-bottom:1px solid var(--line-navy); opacity:.58; transition:opacity 600ms ease;}
+  .t-row::before{content:""; position:absolute; left:-28px; top:49px; width:7px; height:7px; border:1px solid var(--gold-soft); background:var(--navy); transform:rotate(45deg); transition:background 500ms ease, transform 500ms ease;}
+  .t-row.is-active{opacity:1;}
+  .t-row.is-active::before{background:var(--gold-soft); transform:rotate(45deg) scale(1.25);}
+  .t-row .yr{font-family:'Fraunces',serif; color:rgba(199,164,104,.68); font-size:1rem; padding-top:2px; transition:color 500ms ease;}
+  .t-row h4{margin:0 0 8px; color:rgba(255,255,255,.76); font-size:clamp(1.05rem,1.6vw,1.32rem); font-weight:600; transition:color 500ms ease;}
+  .t-row p{margin:0; font-size:.95rem; color:rgba(255,255,255,.62); line-height:1.65; transition:color 500ms ease, opacity 600ms ease, transform 600ms ease;}
+  .t-row.is-active .yr{color:var(--gold-soft);}
+  .t-row.is-active h4{color:#fff;}
+  .t-row.is-active p{color:rgba(255,255,255,.84);}
+  .t-row.is-active:not(.has-entered) p{opacity:0; transform:translateY(8px);}
+  .t-row.has-entered p{opacity:1; transform:none;}
   .results-strip{display:flex; gap:44px; margin-top:44px; flex-wrap:wrap; border-top:1px solid var(--line-navy); padding-top:36px;}
   .r-item .pct{font-family:'Fraunces',serif; font-size:1.9rem; color:var(--gold-soft); font-weight:600;}
   .r-item .who{font-size:.85rem; color:rgba(255,255,255,.7); margin-top:2px;}
+  @media (max-width:900px){
+    .a-grid{grid-template-columns:1fr; gap:40px;}
+    .a-photo{position:relative; top:auto; aspect-ratio:auto; max-height:none; overflow:visible; background:transparent;}
+    .a-photo .achievement-frame{position:relative; inset:auto; aspect-ratio:4/3; margin-bottom:18px; opacity:1; visibility:visible;}
+    .a-photo .achievement-frame img{transform:none;}
+    .achievements-enhanced .a-photo{display:none;}
+    .mobile-achievement-media{grid-column:1/-1; aspect-ratio:4/3; overflow:hidden; margin-bottom:24px; background:#091629;}
+    .achievements-enhanced .mobile-achievement-media{display:block;}
+    .mobile-achievement-media .achievement-frame{position:relative; inset:auto; width:100%; height:100%; opacity:1; visibility:visible;}
+    .mobile-achievement-media .achievement-frame img{transform:scale(1.012);}
+    .mobile-achievement-media .achievement-frame::after{transform:translateX(0);}
+    .mobile-achievement-media.is-revealed .achievement-frame::after{animation:achievementMobileMask 650ms cubic-bezier(.77,0,.18,1) both;}
+    @keyframes achievementMobileMask{0%{transform:translateX(0)}100%{transform:translateX(101%)}}
+    .achievements-carousel .a-grid{touch-action:pan-y;}
+    .achievements-carousel .timeline{padding-left:0; border-top:0;}
+    .achievements-carousel .timeline::before{display:none;}
+    .achievements-carousel .t-row{display:none;}
+    .achievements-carousel .t-row.is-carousel-active{display:grid; animation:achievementContentIn 520ms cubic-bezier(.22,.61,.36,1) both;}
+    .achievements-carousel .t-row::before{display:none;}
+    .achievements-carousel .mobile-achievement-media{margin-bottom:28px;}
+    .achievements-carousel .mobile-achievement-media .achievement-frame::after{transform:translateX(101%);}
+    .achievements-carousel .mobile-achievement-media.is-changing .achievement-frame::after{animation:achievementCarouselMask 560ms cubic-bezier(.77,0,.18,1) both;}
+    .achievements-carousel .mobile-achievement-media.is-changing .achievement-frame img{animation:achievementCarouselImage 560ms cubic-bezier(.22,.61,.36,1) both;}
+    @keyframes achievementCarouselMask{0%{transform:translateX(-101%)}48%{transform:translateX(0)}52%{transform:translateX(0)}100%{transform:translateX(101%)}}
+    @keyframes achievementCarouselImage{0%{opacity:.78; transform:scale(1.012) translateX(12px)}100%{opacity:1; transform:scale(1.012) translateX(0)}}
+    @keyframes achievementContentIn{0%{opacity:.72; transform:translateX(14px)}100%{opacity:1; transform:none}}
+    .achievement-carousel-controls{display:none; align-items:center; gap:18px; padding-top:24px; border-top:1px solid var(--line-navy);}
+    .achievements-carousel .achievement-carousel-controls{display:flex;}
+    .achievement-arrow{display:grid; place-items:center; width:44px; height:44px; flex:0 0 auto; border:1px solid rgba(199,164,104,.58); border-radius:0; background:transparent; color:var(--gold-soft); font-size:1.15rem; cursor:pointer; transition:background .2s ease, color .2s ease, opacity .2s ease;}
+    .achievement-arrow:hover:not(:disabled){background:var(--gold); color:#fff;}
+    .achievement-arrow:disabled{opacity:.32; cursor:not-allowed;}
+    .achievement-progress{display:flex; flex:1; gap:7px; align-items:center;}
+    .achievement-progress span{height:2px; flex:1; background:rgba(199,164,104,.28); transition:background 350ms ease;}
+    .achievement-progress span.is-active{background:var(--gold-soft);}
+    .timeline{padding-left:20px;}
+    .timeline::after{display:none;}
+    .t-row{grid-template-columns:1fr; gap:7px; min-height:0; padding:36px 0 44px; opacity:1;}
+    .t-row::before{left:-24px; top:45px;}
+    .t-row .yr{font-size:.9rem;}
+    .t-row h4{color:#fff; font-size:1.25rem;}
+    .t-row p{color:rgba(255,255,255,.78);}
+    .results-strip{margin-top:36px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .achievement-frame,.achievement-frame img,.t-row,.t-row::before,.t-row .yr,.t-row h4,.t-row p,.timeline::after{animation:none!important; transition:none!important;}
+    .achievement-frame::after{display:none!important;}
+    .t-row,.t-row p{opacity:1!important; transform:none!important;}
+    .achievements-carousel .t-row.is-carousel-active,.achievements-carousel .mobile-achievement-media.is-changing .achievement-frame img{animation:none!important;}
+    .achievement-progress span{transition:none!important;}
+  }
 
   /* ---------- SOCIETIES ---------- */
   .societies{background:var(--paper);}
@@ -752,15 +822,29 @@
       <h2>Recent results, verified</h2>
       <p>Matric board results and inter-school competition outcomes from the 2025 academic year.</p>
     </div>
-    <div class="a-grid">
-      <div class="a-photo reveal">
-        <img src="images/achievements-bhs-trophy.jpg" alt="HPS Best Delegation trophy, BHS Sportsfest 2025" width="900" height="1256" loading="lazy" decoding="async">
+    <div class="a-grid" role="region" aria-label="Achievement spotlight" tabindex="0">
+      <div class="a-photo reveal" aria-label="Achievement photographs">
+        <figure class="achievement-frame is-active" data-achievement="0">
+          <img src="images/achievements-bhs-trophy.jpg" alt="HPS Best Delegation trophy, BHS Sports Fest 2025" width="900" height="1256" loading="eager" decoding="async">
+        </figure>
+        <figure class="achievement-frame" data-achievement="1">
+          <img src="images/campus-lgs-optimus.jpg" alt="HPS students with trophies and shields at LGS Optimus" width="700" height="585" loading="eager" decoding="async">
+        </figure>
+        <figure class="achievement-frame" data-achievement="2">
+          <img src="images/intro-aitchison-delegation.jpg" alt="HPS delegation at ACLLCF, Aitchison College" width="1000" height="513" loading="eager" decoding="async">
+        </figure>
       </div>
       <div class="reveal">
         <div class="timeline">
-          <div class="t-row"><div class="yr">2025</div><div><h4>BHS Sports Fest, Bloomfield Hall Gulberg</h4><p>40+ medals, 5 trophies, crowned Best Delegation.</p></div></div>
-          <div class="t-row"><div class="yr">2025</div><div><h4>LGS Optimus</h4><p>46 medals, 6 shields, Runner-Up Overall and Best Delegation.</p></div></div>
-          <div class="t-row"><div class="yr">2025</div><div><h4>ACLLCF, Aitchison College</h4><p>Two Runner-Up trophies and one Honorary Mention.</p></div></div>
+          <article class="t-row is-active has-entered" data-achievement="0"><div class="mobile-achievement-media" data-media-slot="0"></div><div class="yr">2025</div><div><h4>BHS Sports Fest, Bloomfield Hall Gulberg</h4><p>40+ medals, 5 trophies, crowned Best Delegation.</p></div></article>
+          <article class="t-row" data-achievement="1"><div class="mobile-achievement-media" data-media-slot="1"></div><div class="yr">2025</div><div><h4>LGS Optimus</h4><p>46 medals, 6 shields, Runner-Up Overall and Best Delegation.</p></div></article>
+          <article class="t-row" data-achievement="2"><div class="mobile-achievement-media" data-media-slot="2"></div><div class="yr">2025</div><div><h4>ACLLCF, Aitchison College</h4><p>Two Runner-Up trophies and one Honorary Mention.</p></div></article>
+        </div>
+        <div class="achievement-carousel-controls" aria-label="Achievement controls">
+          <button class="achievement-arrow achievement-previous" type="button" aria-label="Show previous achievement" disabled>&larr;</button>
+          <div class="achievement-progress" aria-hidden="true"><span class="is-active"></span><span></span><span></span></div>
+          <span class="sr-only achievement-status" aria-live="polite">Achievement 1 of 3: BHS Sports Fest, Bloomfield Hall Gulberg</span>
+          <button class="achievement-arrow achievement-next" type="button" aria-label="Show next achievement">&rarr;</button>
         </div>
         <div class="results-strip">
           <div class="r-item"><div class="pct">94%</div><div class="who">Abdul Hannan Shahid Khan, Matric 2025</div></div>
@@ -978,6 +1062,154 @@
     document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
   } else {
     document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+
+  var achievementsSection = document.getElementById('achievements');
+  if (achievementsSection) {
+    var achievementVisual = achievementsSection.querySelector('.a-photo');
+    var achievementTimeline = achievementsSection.querySelector('.timeline');
+    var achievementFrames = Array.prototype.slice.call(achievementsSection.querySelectorAll('.achievement-frame'));
+    var achievementRows = Array.prototype.slice.call(achievementsSection.querySelectorAll('.t-row'));
+    var achievementSlots = Array.prototype.slice.call(achievementsSection.querySelectorAll('.mobile-achievement-media'));
+    var achievementCarousel = achievementsSection.querySelector('.a-grid');
+    var achievementPrevious = achievementsSection.querySelector('.achievement-previous');
+    var achievementNext = achievementsSection.querySelector('.achievement-next');
+    var achievementStatus = achievementsSection.querySelector('.achievement-status');
+    var achievementSegments = Array.prototype.slice.call(achievementsSection.querySelectorAll('.achievement-progress span'));
+    var achievementQuery = window.matchMedia('(max-width: 900px)');
+    var achievementObserver = null;
+    var activeAchievement = 0;
+    var achievementTouchStart = null;
+
+    function achievementTitle(index){
+      return achievementRows[index].querySelector('h4').textContent;
+    }
+
+    function setMobileAchievement(index, deliberate, animate){
+      if (index < 0 || index >= achievementRows.length) return;
+      activeAchievement = index;
+      achievementRows.forEach(function(row, rowIndex){
+        row.classList.remove('is-carousel-active', 'is-active');
+        if (rowIndex === index) row.classList.add('is-active');
+      });
+      achievementSlots.forEach(function(slot){ slot.classList.remove('is-changing'); });
+      achievementSegments.forEach(function(segment, segmentIndex){
+        segment.classList.toggle('is-active', segmentIndex === index);
+      });
+      achievementPrevious.disabled = index === 0;
+      achievementNext.disabled = index === achievementRows.length - 1;
+      void achievementRows[index].offsetWidth;
+      achievementRows[index].classList.add('is-carousel-active', 'has-entered');
+      if (animate && !prefersReduced) {
+        void achievementSlots[index].offsetWidth;
+        achievementSlots[index].classList.add('is-changing');
+      }
+      if (deliberate) achievementStatus.textContent = 'Achievement ' + (index + 1) + ' of ' + achievementRows.length + ': ' + achievementTitle(index);
+    }
+
+    achievementPrevious.addEventListener('click', function(){
+      setMobileAchievement(activeAchievement - 1, true, true);
+    });
+    achievementNext.addEventListener('click', function(){
+      setMobileAchievement(activeAchievement + 1, true, true);
+    });
+    achievementCarousel.addEventListener('keydown', function(event){
+      if (!achievementQuery.matches) return;
+      if (event.key === 'ArrowLeft' && activeAchievement > 0) {
+        event.preventDefault();
+        setMobileAchievement(activeAchievement - 1, true, true);
+      } else if (event.key === 'ArrowRight' && activeAchievement < achievementRows.length - 1) {
+        event.preventDefault();
+        setMobileAchievement(activeAchievement + 1, true, true);
+      }
+    });
+    achievementCarousel.addEventListener('touchstart', function(event){
+      if (!achievementQuery.matches || event.touches.length !== 1) return;
+      achievementTouchStart = {x:event.touches[0].clientX, y:event.touches[0].clientY};
+    }, {passive:true});
+    achievementCarousel.addEventListener('touchend', function(event){
+      if (!achievementTouchStart || event.changedTouches.length !== 1) return;
+      var deltaX = event.changedTouches[0].clientX - achievementTouchStart.x;
+      var deltaY = event.changedTouches[0].clientY - achievementTouchStart.y;
+      achievementTouchStart = null;
+      if (Math.abs(deltaX) < 45 || Math.abs(deltaX) <= Math.abs(deltaY) * 1.25) return;
+      if (deltaX < 0) setMobileAchievement(activeAchievement + 1, true, true);
+      else setMobileAchievement(activeAchievement - 1, true, true);
+    }, {passive:true});
+    achievementCarousel.addEventListener('touchcancel', function(){ achievementTouchStart = null; }, {passive:true});
+
+    function setActiveAchievement(index, animate){
+      if (index === activeAchievement && achievementsSection.classList.contains('achievements-ready')) return;
+      activeAchievement = index;
+      achievementFrames.forEach(function(frame, frameIndex){
+        frame.classList.toggle('is-active', frameIndex === index);
+        frame.classList.remove('is-wiping');
+      });
+      achievementRows.forEach(function(row, rowIndex){
+        row.classList.toggle('is-active', rowIndex === index);
+      });
+      achievementTimeline.style.setProperty('--achievement-progress', (index / Math.max(achievementRows.length - 1, 1) * 100) + '%');
+      achievementRows[index].classList.add('has-entered');
+      if (animate && !prefersReduced) {
+        void achievementFrames[index].offsetWidth;
+        achievementFrames[index].classList.add('is-wiping');
+      }
+      achievementsSection.classList.add('achievements-ready');
+    }
+
+    function nearestAchievement(){
+      var viewportCenter = window.innerHeight / 2;
+      var nearestIndex = 0;
+      var nearestDistance = Infinity;
+      achievementRows.forEach(function(row, index){
+        var rect = row.getBoundingClientRect();
+        var distance = Math.abs(rect.top + rect.height / 2 - viewportCenter);
+        if (distance < nearestDistance) {
+          nearestDistance = distance;
+          nearestIndex = index;
+        }
+      });
+      return nearestIndex;
+    }
+
+    function configureAchievements(){
+      if (achievementObserver) achievementObserver.disconnect();
+      achievementsSection.classList.add('achievements-enhanced');
+
+      if (achievementQuery.matches) {
+        achievementsSection.classList.add('achievements-carousel');
+        achievementFrames.forEach(function(frame, index){
+          achievementSlots[index].appendChild(frame);
+          frame.classList.add('is-active');
+        });
+        setMobileAchievement(activeAchievement, false, !prefersReduced);
+      } else {
+        achievementsSection.classList.remove('achievements-carousel');
+        achievementRows.forEach(function(row){ row.classList.remove('is-carousel-active'); });
+        achievementSlots.forEach(function(slot){ slot.classList.remove('is-changing'); });
+        achievementFrames.forEach(function(frame){ achievementVisual.appendChild(frame); });
+        achievementsSection.classList.remove('achievements-ready');
+        setActiveAchievement(nearestAchievement(), false);
+        if (prefersReduced || !('IntersectionObserver' in window)) return;
+        achievementObserver = new IntersectionObserver(function(){
+          setActiveAchievement(nearestAchievement(), true);
+        }, {rootMargin:'-38% 0px -38% 0px', threshold:[0,.25,.5,.75,1]});
+        achievementRows.forEach(function(row){ achievementObserver.observe(row); });
+      }
+    }
+
+    var achievementImagesReady = achievementFrames.map(function(frame){
+      var image = frame.querySelector('img');
+      if (typeof image.decode === 'function') return image.decode().catch(function(){});
+      if (image.complete) return Promise.resolve();
+      return new Promise(function(resolve){
+        image.addEventListener('load', resolve, {once:true});
+        image.addEventListener('error', resolve, {once:true});
+      });
+    });
+    Promise.all(achievementImagesReady).then(configureAchievements);
+    if (typeof achievementQuery.addEventListener === 'function') achievementQuery.addEventListener('change', configureAchievements);
+    else if (typeof achievementQuery.addListener === 'function') achievementQuery.addListener(configureAchievements);
   }
 
   var lifeStory = document.getElementById('life-story');
