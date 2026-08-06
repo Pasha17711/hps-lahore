@@ -1,3 +1,7 @@
 
 # Local raw video footage
 video-source/
+
+# Installed dependencies
+node_modules/
+.vercel
