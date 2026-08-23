@@ -24,6 +24,13 @@ instruction, even though that expansion appeared in some earlier source material
 | Khadija Zaheer, 502/555, A+ | School newsletter |
 | Muhammad Rayan Khan, 7 A*/A, O Level | School newsletter |
 
+## Academic Results (Matric / O Level, 2026)
+| Claim | Source |
+|---|---|
+| 15 Matric A+ achievers; highest score 1089/1200 by Khadija Zaheer | Fifteen supplied official Matric 2026 result posters |
+| Full Matric honour roll and individual scores shown on the homepage | Fifteen supplied official Matric 2026 result posters |
+| O Level Results 2026: 40 students achieved a total of 162 A & A* grades | Supplied official O Level 2026 result graphics; 162 total confirmed by the site owner after resolving the conflicting source graphics |
+
 ## Achievements
 | Claim | Source |
 |---|---|

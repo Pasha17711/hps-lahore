@@ -429,9 +429,6 @@
   .t-row.is-active p{color:rgba(255,255,255,.84);}
   .t-row.is-active:not(.has-entered) p{opacity:0; transform:translateY(8px);}
   .t-row.has-entered p{opacity:1; transform:none;}
-  .results-strip{display:flex; gap:44px; margin-top:44px; flex-wrap:wrap; border-top:1px solid var(--line-navy); padding-top:36px;}
-  .r-item .pct{font-family:'Fraunces',serif; font-size:1.9rem; color:var(--gold-soft); font-weight:600;}
-  .r-item .who{font-size:.85rem; color:rgba(255,255,255,.7); margin-top:2px;}
   @media (max-width:900px){
     .a-grid{grid-template-columns:1fr; gap:40px;}
     .a-photo{position:relative; top:auto; aspect-ratio:auto; max-height:none; overflow:visible; background:transparent;}
@@ -481,6 +478,113 @@
     .t-row,.t-row p{opacity:1!important; transform:none!important;}
     .achievements-carousel .t-row.is-carousel-active,.achievements-carousel .mobile-achievement-media.is-changing .achievement-frame img{animation:none!important;}
     .achievement-progress span{transition:none!important;}
+  }
+
+  /* ---------- ACADEMIC RESULTS 2026 ---------- */
+  .academic-results{position:relative; isolation:isolate; overflow:hidden; margin-top:100px; padding:96px 0 102px; background:#09182d; border-top:1px solid rgba(199,164,104,.24);}
+  .academic-results::before,.academic-results::after{content:""; position:absolute; z-index:-1; width:72vw; height:34vw; min-height:360px; border:1px solid rgba(199,164,104,.1); border-radius:50%; pointer-events:none;}
+  .academic-results::before{top:-23vw; left:-18vw; transform:rotate(9deg);}
+  .academic-results::after{right:-30vw; bottom:-27vw; transform:rotate(-12deg);}
+  .results-head{display:flex; align-items:end; justify-content:space-between; gap:40px; margin-bottom:52px;}
+  .results-title .label{color:var(--gold-soft);}
+  .results-title h3{margin:13px 0 0; color:#fff; font-size:clamp(2.35rem,4vw,3.9rem); line-height:1.04; font-weight:500;}
+  .result-tabs{--active-tab:0; position:relative; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); width:min(100%,360px); min-height:52px; padding:4px; border:1px solid rgba(199,164,104,.46); background:rgba(5,16,31,.62);}
+  .result-tabs::before{content:""; position:absolute; top:4px; bottom:4px; left:4px; width:calc((100% - 8px)/2); background:var(--gold); transform:translateX(calc(var(--active-tab)*100%)); transition:transform 330ms cubic-bezier(.22,1,.36,1);}
+  .result-tabs::after{content:""; position:absolute; top:4px; bottom:4px; left:4px; width:calc((100% - 8px)/2); opacity:0; background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.23) 49%,transparent 68%); pointer-events:none;}
+  .result-tabs.is-changing::after{animation:resultTabSweep 520ms ease;}
+  @keyframes resultTabSweep{0%{opacity:0; transform:translateX(calc(var(--active-tab)*100% - 18px))}35%{opacity:1}100%{opacity:0; transform:translateX(calc(var(--active-tab)*100% + 18px))}}
+  .result-tab{position:relative; z-index:1; min-height:44px; padding:10px 16px; border:0; background:transparent; color:rgba(255,255,255,.72); font:600 .78rem/1.2 'Inter',sans-serif; letter-spacing:.04em; cursor:pointer; transition:color 250ms ease;}
+  .result-tab[aria-selected="true"]{color:#fff;}
+  .result-panel{transition:opacity 280ms ease,transform 280ms ease;}
+  .result-panel[hidden]{display:none;}
+  .result-panel.is-entering{opacity:0; transform:translateY(8px);}
+  .matric-layout{display:grid; grid-template-columns:minmax(0,1.18fr) minmax(350px,.82fr); border-top:1px solid rgba(199,164,104,.28); border-bottom:1px solid rgba(199,164,104,.22);}
+  .matric-feature{display:grid; grid-template-columns:minmax(160px,.72fr) minmax(260px,1.28fr); align-items:center; min-height:430px; padding:54px clamp(32px,5vw,70px) 54px 0; border-right:1px solid rgba(199,164,104,.22);}
+  .achiever-stat{padding-right:clamp(24px,4vw,58px);}
+  .ticker-number{display:inline-block; font-family:'Fraunces',serif; font-variant-numeric:tabular-nums; color:var(--gold-soft);}
+  .hero-number{font-size:clamp(5.9rem,9vw,9.6rem); line-height:.78; letter-spacing:-.055em;}
+  .stat-caption{display:block; margin-top:24px; color:#fff; font-size:.72rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase;}
+  .highest-result{padding-left:clamp(24px,4vw,58px); border-left:1px solid rgba(199,164,104,.22);}
+  .result-kicker{display:block; color:var(--gold-soft); font-size:.69rem; font-weight:600; letter-spacing:.15em; text-transform:uppercase;}
+  .score{display:flex; align-items:baseline; gap:.2em; margin:12px 0 24px; color:#fff; font-family:'Fraunces',serif; font-size:clamp(2.5rem,4vw,4.3rem); line-height:1; letter-spacing:-.035em; white-space:nowrap;}
+  .score-total{font-size:.48em; color:rgba(255,255,255,.58); letter-spacing:0;}
+  .top-student-line{display:flex; align-items:center; gap:18px;}
+  .top-student-portrait{width:82px; height:82px; flex:0 0 82px; padding:3px; border:1px solid rgba(199,164,104,.72); border-radius:50%; object-fit:cover; background:#10213a;}
+  .top-student{margin:0; color:#fff; font-family:'Fraunces',serif; font-size:clamp(1.35rem,2vw,1.85rem);}
+  .top-student-year{margin:4px 0 0; color:rgba(255,255,255,.58); font-size:.82rem;}
+  .honour-panel{padding:42px 0 38px clamp(34px,4vw,60px);}
+  .honour-content{display:block;}
+  .honour-content-inner{min-height:0;}
+  .honour-heading{display:flex; align-items:center; justify-content:space-between; gap:20px; padding-bottom:19px; border-bottom:1px solid rgba(199,164,104,.22);}
+  .honour-heading h4{margin:0; color:#fff; font:600 .72rem/1.3 'Inter',sans-serif; letter-spacing:.15em; text-transform:uppercase;}
+  .honour-heading span{color:rgba(255,255,255,.46); font-size:.72rem;}
+  .honour-list{margin:0; padding:0; list-style:none; counter-reset:honour;}
+  .honour-row{counter-increment:honour; display:grid; grid-template-columns:27px minmax(0,1fr) auto; gap:13px; align-items:center; min-height:53px; border-bottom:1px solid rgba(255,255,255,.09);}
+  .honour-row::before{content:counter(honour,decimal-leading-zero); color:rgba(199,164,104,.63); font-size:.64rem; letter-spacing:.05em;}
+  .honour-name{min-width:0; color:rgba(255,255,255,.88); font-size:.84rem; overflow-wrap:anywhere;}
+  .honour-score{color:var(--gold-soft); font-family:'Fraunces',serif; font-size:.94rem; white-space:nowrap;}
+  .honour-more{display:grid; grid-template-rows:0fr; transition:grid-template-rows 400ms cubic-bezier(.22,1,.36,1);}
+  .honour-more>div{min-height:0; overflow:hidden;}
+  .honour-more .honour-list{counter-reset:honour 5;}
+  .honour-more.is-open{grid-template-rows:1fr;}
+  .honour-toggle{display:flex; align-items:center; justify-content:space-between; gap:18px; width:100%; min-height:48px; margin-top:14px; padding:0; border:0; background:transparent; color:var(--gold-soft); font:600 .78rem/1.3 'Inter',sans-serif; text-align:left; cursor:pointer;}
+  .honour-toggle-icon{font-size:1.15rem; transition:transform 300ms ease;}
+  .honour-toggle[aria-expanded="true"] .honour-toggle-icon{transform:rotate(180deg);}
+  .olevel-layout{display:grid; grid-template-columns:minmax(0,1.15fr) minmax(330px,.85fr); align-items:stretch; min-height:430px; border-top:1px solid rgba(199,164,104,.28); border-bottom:1px solid rgba(199,164,104,.22);}
+  .olevel-results{display:flex; flex-direction:column; justify-content:center; padding:52px clamp(36px,5vw,68px) 54px 0; border-right:1px solid rgba(199,164,104,.22);}
+  .olevel-metrics{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); margin-top:42px;}
+  .olevel-stat{display:flex; min-width:0; flex-direction:column; justify-content:center; padding-right:clamp(24px,4vw,58px);}
+  .olevel-stat+.olevel-stat{padding-right:0; padding-left:clamp(24px,4vw,58px); border-left:1px solid rgba(199,164,104,.28);}
+  .olevel-stat .hero-number{font-size:clamp(5.8rem,8vw,8.8rem);}
+  .olevel-copy{display:flex; flex-direction:column; justify-content:center; max-width:590px; padding:60px 0 60px clamp(42px,6vw,78px);}
+  .olevel-copy h4{margin:14px 0 20px; color:#fff; font-family:'Fraunces',serif; font-size:clamp(1.8rem,3vw,2.8rem); font-weight:500; line-height:1.12;}
+  .olevel-copy p{max-width:56ch; margin:0; color:rgba(255,255,255,.72); font-size:1rem; line-height:1.8;}
+  @media (max-width:1000px){
+    .results-head{align-items:start; flex-direction:column;}
+    .result-tabs{width:360px;}
+    .matric-layout{grid-template-columns:1fr;}
+    .matric-feature{border-right:0; border-bottom:1px solid rgba(199,164,104,.22); padding-right:0;}
+    .honour-panel{padding-left:0;}
+  }
+  @media (max-width:700px){
+    .academic-results{margin-top:64px; padding:64px 0 68px;}
+    .academic-results .wrap{padding:0 18px;}
+    .results-head{gap:28px; margin-bottom:34px;}
+    .results-title h3{font-size:2.55rem;}
+    .result-tabs{width:100%;}
+    .matric-layout,.olevel-layout{border-color:rgba(199,164,104,.3);}
+    .matric-feature{grid-template-columns:1fr; min-height:0; padding:38px 4px 40px; text-align:center;}
+    .achiever-stat{padding:0 0 34px;}
+    .hero-number{font-size:clamp(6rem,29vw,8rem);}
+    .stat-caption{margin-top:17px;}
+    .highest-result{padding:34px 0 0; border-left:0; border-top:1px solid rgba(199,164,104,.22);}
+    .score{justify-content:center; font-size:clamp(2.55rem,12vw,3.6rem);}
+    .top-student-line{justify-content:center; gap:14px; text-align:left;}
+    .top-student-portrait{width:68px; height:68px; flex-basis:68px; padding:2px;}
+    .honour-panel{padding:12px 0 0;}
+    .honour-content{display:grid; grid-template-rows:0fr; transition:grid-template-rows 400ms cubic-bezier(.22,1,.36,1);}
+    .honour-content-inner{overflow:hidden;}
+    .honour-content.is-mobile-open{grid-template-rows:1fr;}
+    .honour-content.is-mobile-open .honour-more{grid-template-rows:1fr;}
+    .honour-heading{padding:0 3px 16px;}
+    .honour-row{grid-template-columns:25px minmax(0,1fr) auto; gap:9px; min-height:51px; padding:0 3px;}
+    .honour-name{font-size:.78rem;}
+    .honour-score{font-size:.84rem;}
+    .honour-toggle{min-height:50px; padding:0 3px;}
+    .olevel-layout{grid-template-columns:1fr; min-height:0; text-align:center;}
+    .olevel-results{padding:40px 0 38px; border-right:0; border-bottom:1px solid rgba(199,164,104,.22);}
+    .olevel-metrics{margin-top:34px;}
+    .olevel-stat{align-items:center; padding:0 15px;}
+    .olevel-stat+.olevel-stat{padding:0 8px 0 22px;}
+    .olevel-stat .hero-number{font-size:clamp(4.4rem,20vw,5.5rem);}
+    .olevel-stat .stat-caption{max-width:12ch; line-height:1.5;}
+    .olevel-copy{align-items:center; padding:36px 5px 42px;}
+    .olevel-copy h4{font-size:1.85rem;}
+    .olevel-copy p{font-size:.9rem; line-height:1.72;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .result-tabs::before,.result-panel,.honour-content,.honour-more,.honour-toggle-icon{transition:none!important;}
+    .result-tabs::after{display:none;}
   }
 
   /* ---------- SOCIETIES ---------- */
@@ -819,8 +923,8 @@
   <div class="wrap">
     <div class="head reveal">
       <span class="label">Achievements</span>
-      <h2>Recent results, verified</h2>
-      <p>Matric board results and inter-school competition outcomes from the 2025 academic year.</p>
+      <h2>Academic excellence and competition highlights.</h2>
+      <p>From academic results to inter-school competitions, our students continue to distinguish themselves academically and beyond.</p>
     </div>
     <div class="a-grid" role="region" aria-label="Achievement spotlight" tabindex="0">
       <div class="a-photo reveal" aria-label="Achievement photographs">
@@ -846,10 +950,54 @@
           <span class="sr-only achievement-status" aria-live="polite">Achievement 1 of 3: BHS Sports Fest, Bloomfield Hall Gulberg</span>
           <button class="achievement-arrow achievement-next" type="button" aria-label="Show next achievement">&rarr;</button>
         </div>
-        <div class="results-strip">
-          <div class="r-item"><div class="pct">94%</div><div class="who">Abdul Hannan Shahid Khan, Matric 2025</div></div>
-          <div class="r-item"><div class="pct">A+</div><div class="who">Khadija Zaheer, 502/555</div></div>
-          <div class="r-item"><div class="pct">7 A*/A</div><div class="who">Muhammad Rayan Khan, O Level</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="academic-results" id="academic-results">
+    <div class="wrap">
+      <div class="results-head reveal">
+        <div class="results-title"><span class="label">Academic Results</span><h3>Excellence, achieved.</h3></div>
+        <div class="result-tabs" role="tablist" aria-label="Academic result year">
+          <button class="result-tab" id="matric-tab" type="button" role="tab" aria-selected="true" aria-controls="matric-panel" tabindex="0">Matric 2026</button>
+          <button class="result-tab" id="olevel-tab" type="button" role="tab" aria-selected="false" aria-controls="olevel-panel" tabindex="-1">O Level 2026</button>
+        </div>
+      </div>
+      <div class="result-panel reveal" id="matric-panel" role="tabpanel" aria-labelledby="matric-tab">
+        <div class="matric-layout">
+          <div class="matric-feature">
+            <div class="achiever-stat"><span class="ticker-number hero-number" data-count="15">15</span><span class="stat-caption">A+ Achievers</span></div>
+            <div class="highest-result"><span class="result-kicker">Highest Score</span><div class="score"><span class="ticker-number" data-count="1089">1089</span><span class="score-total">/ 1200</span></div><div class="top-student-line"><img class="top-student-portrait" src="images/results-2026/portraits/khadija-zaheer.webp" alt="Khadija Zaheer" width="480" height="480" loading="lazy" decoding="async"><div><p class="top-student">Khadija Zaheer</p><p class="top-student-year">Matric 2026</p></div></div></div>
+          </div>
+          <div class="honour-panel">
+            <div class="honour-content" id="matric-honour-roll"><div class="honour-content-inner">
+            <div class="honour-heading"><h4>Matric honour roll</h4><span>A+ results</span></div>
+            <ol class="honour-list">
+              <li class="honour-row"><span class="honour-name">Muhammad Ayan</span><span class="honour-score">1070 / 1200</span></li>
+              <li class="honour-row"><span class="honour-name">Kaneez Fatima</span><span class="honour-score">1059 / 1200</span></li>
+              <li class="honour-row"><span class="honour-name">Fajar Shahbaz</span><span class="honour-score">1055 / 1200</span></li>
+              <li class="honour-row"><span class="honour-name">Sarah Khan</span><span class="honour-score">1036 / 1200</span></li>
+              <li class="honour-row"><span class="honour-name">Syeda Fatima Sikandar</span><span class="honour-score">1036 / 1200</span></li>
+            </ol>
+            <div class="honour-more" id="matric-honour-more"><div><ol class="honour-list" start="6">
+              <li class="honour-row"><span class="honour-name">Hafsa Tayyaba</span><span class="honour-score">1034 / 1200</span></li>
+              <li class="honour-row"><span class="honour-name">Kinza Qayyum</span><span class="honour-score">1015 / 1200</span></li>
+              <li class="honour-row"><span class="honour-name">Ayesha Farooq</span><span class="honour-score">997 / 1200</span></li>
+              <li class="honour-row"><span class="honour-name">Areeba Sarwat</span><span class="honour-score">985 / 1200</span></li>
+              <li class="honour-row"><span class="honour-name">Abdullah Majid</span><span class="honour-score">985 / 1200</span></li>
+              <li class="honour-row"><span class="honour-name">M. Abdullah</span><span class="honour-score">982 / 1200</span></li>
+              <li class="honour-row"><span class="honour-name">M. Affan Abid</span><span class="honour-score">975 / 1200</span></li>
+              <li class="honour-row"><span class="honour-name">Umme Abiha Zahid</span><span class="honour-score">974 / 1200</span></li>
+              <li class="honour-row"><span class="honour-name">Abdul Manan Amin</span><span class="honour-score">960 / 1200</span></li>
+            </ol></div></div>
+            </div></div>
+            <button class="honour-toggle" type="button" aria-expanded="false" aria-controls="matric-honour-roll"><span>View full Matric honour roll</span><span class="honour-toggle-icon" aria-hidden="true">↓</span></button>
+          </div>
+        </div>
+      </div>
+      <div class="result-panel" id="olevel-panel" role="tabpanel" aria-labelledby="olevel-tab" hidden>
+        <div class="olevel-layout">
+          <div class="olevel-results"><span class="result-kicker">O Level Results 2026</span><div class="olevel-metrics"><div class="olevel-stat"><span class="ticker-number hero-number" data-count="40">40</span><span class="stat-caption">Students</span></div><div class="olevel-stat"><span class="ticker-number hero-number" data-count="162">162</span><span class="stat-caption">A &amp; A* Grades</span></div></div></div>
+          <div class="olevel-copy"><span class="result-kicker">Academic Excellence</span><h4>Outstanding performance.</h4><p>A remarkable milestone in academic excellence. Our O Level students have once again demonstrated focus, discipline and outstanding performance.</p></div>
         </div>
       </div>
     </div>
@@ -1210,6 +1358,98 @@
     Promise.all(achievementImagesReady).then(configureAchievements);
     if (typeof achievementQuery.addEventListener === 'function') achievementQuery.addEventListener('change', configureAchievements);
     else if (typeof achievementQuery.addListener === 'function') achievementQuery.addListener(configureAchievements);
+  }
+
+  var resultsSection = document.getElementById('academic-results');
+  if (resultsSection) {
+    var resultTabs = Array.prototype.slice.call(resultsSection.querySelectorAll('[role="tab"]'));
+    var resultPanels = Array.prototype.slice.call(resultsSection.querySelectorAll('[role="tabpanel"]'));
+    var resultTabList = resultsSection.querySelector('.result-tabs');
+    var animatedCounts = new WeakSet();
+
+    function animateCount(element){
+      if (animatedCounts.has(element)) return;
+      animatedCounts.add(element);
+      var target = Number(element.getAttribute('data-count'));
+      if (prefersReduced || !target) { element.textContent = target; return; }
+      var startTime = null;
+      var duration = target > 100 ? 1000 : 780;
+      function tick(time){
+        if (!startTime) startTime = time;
+        var progress = Math.min((time - startTime) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        element.textContent = Math.round(target * eased);
+        if (progress < 1) window.requestAnimationFrame(tick);
+      }
+      element.textContent = '0';
+      window.requestAnimationFrame(tick);
+    }
+
+    function animateVisibleCounts(panel){ panel.querySelectorAll('[data-count]').forEach(animateCount); }
+
+    function selectResultTab(tab, moveFocus){
+      var panel = document.getElementById(tab.getAttribute('aria-controls'));
+      var selectedIndex = resultTabs.indexOf(tab);
+      resultTabList.style.setProperty('--active-tab', selectedIndex);
+      resultTabList.classList.remove('is-changing');
+      void resultTabList.offsetWidth;
+      resultTabList.classList.add('is-changing');
+      resultTabs.forEach(function(item){
+        var selected = item === tab;
+        item.setAttribute('aria-selected', selected ? 'true' : 'false');
+        item.tabIndex = selected ? 0 : -1;
+      });
+      resultPanels.forEach(function(item){ item.hidden = item !== panel; });
+      panel.classList.add('is-entering');
+      window.requestAnimationFrame(function(){ window.requestAnimationFrame(function(){ panel.classList.remove('is-entering'); }); });
+      animateVisibleCounts(panel);
+      if (moveFocus) tab.focus();
+    }
+
+    resultTabs.forEach(function(tab){
+      tab.addEventListener('click', function(){ selectResultTab(tab, false); });
+      tab.addEventListener('keydown', function(event){
+        var current = resultTabs.indexOf(tab);
+        var next = null;
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') next = (current + 1) % resultTabs.length;
+        if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') next = (current - 1 + resultTabs.length) % resultTabs.length;
+        if (event.key === 'Home') next = 0;
+        if (event.key === 'End') next = resultTabs.length - 1;
+        if (next !== null) { event.preventDefault(); selectResultTab(resultTabs[next], true); }
+      });
+    });
+
+    var honourToggle = resultsSection.querySelector('.honour-toggle');
+    var honourContent = document.getElementById(honourToggle.getAttribute('aria-controls'));
+    var honourMore = document.getElementById('matric-honour-more');
+    var honourMobileQuery = window.matchMedia('(max-width: 700px)');
+    honourToggle.addEventListener('click', function(){
+      var open = honourToggle.getAttribute('aria-expanded') === 'true';
+      honourToggle.setAttribute('aria-expanded', open ? 'false' : 'true');
+      if (honourMobileQuery.matches) honourContent.classList.toggle('is-mobile-open', !open);
+      else honourMore.classList.toggle('is-open', !open);
+      honourToggle.querySelector('span').textContent = open ? 'View full Matric honour roll' : 'Show fewer results';
+    });
+
+    function resetHonourRoll(){
+      honourToggle.setAttribute('aria-expanded', 'false');
+      honourToggle.querySelector('span').textContent = 'View full Matric honour roll';
+      honourContent.classList.remove('is-mobile-open');
+      honourMore.classList.remove('is-open');
+    }
+    if (typeof honourMobileQuery.addEventListener === 'function') honourMobileQuery.addEventListener('change', resetHonourRoll);
+    else if (typeof honourMobileQuery.addListener === 'function') honourMobileQuery.addListener(resetHonourRoll);
+
+    if (prefersReduced || !('IntersectionObserver' in window)) {
+      animateVisibleCounts(document.getElementById('matric-panel'));
+    } else {
+      var resultsObserver = new IntersectionObserver(function(entries){
+        if (!entries[0].isIntersecting) return;
+        animateVisibleCounts(document.getElementById('matric-panel'));
+        resultsObserver.disconnect();
+      }, {threshold:.25});
+      resultsObserver.observe(resultsSection);
+    }
   }
 
   var lifeStory = document.getElementById('life-story');
