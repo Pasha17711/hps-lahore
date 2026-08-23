@@ -91,33 +91,6 @@
 
   footer{background:#081324; color:#8f9ab0; padding:44px 0 26px; text-align:center; font-size:.85rem;}
   footer a{color:#8f9ab0;}
-
-  .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease;}
-  .reveal.in{opacity:1; transform:none;}
-  @media (prefers-reduced-motion: reduce){ .reveal{opacity:1; transform:none; transition:none;} }
-
-  .confirm{position:relative; margin:8px 0 0; padding:11px 14px; border:1px dashed rgba(165,129,63,.55); border-left:2px solid var(--gold); background:rgba(165,129,63,.07); border-radius:2px; font-size:.85rem; font-style:italic; color:var(--ink-soft); line-height:1.55;}
-  .process .confirm{border-color:rgba(199,164,104,.5); border-left-color:var(--gold-soft); background:rgba(199,164,104,.08); color:rgba(255,255,255,.72);}
-
-  /* ---------- ADMISSIONS PROCESS ---------- */
-  .process{background:linear-gradient(180deg,var(--navy),var(--navy-2)); color:#fff;}
-  .process .label{color:var(--gold-soft);}
-  .process .head h2{color:#fff;}
-  .p-timeline{list-style:none; margin:0; padding:0 0 0 24px; border-left:1px solid rgba(199,164,104,.28); max-width:740px;}
-  .p-row{position:relative; padding:0 0 42px;}
-  .p-row:last-child{padding-bottom:0;}
-  .p-row::before{content:""; position:absolute; left:-29px; top:4px; width:7px; height:7px; border:1px solid var(--gold-soft); background:var(--navy); transform:rotate(45deg);}
-  .p-num{display:block; font-family:'Fraunces',serif; color:rgba(199,164,104,.78); font-size:.92rem; letter-spacing:.02em; margin-bottom:6px;}
-  .p-row h3{margin:0 0 8px; font-size:1.18rem; font-weight:600; color:#fff;}
-  .p-row p{margin:0 0 8px; font-size:.92rem; color:rgba(255,255,255,.72); line-height:1.6;}
-  .p-row p:last-child{margin-bottom:0;}
-  .process-cta{display:inline-block; margin-top:38px; background:var(--gold); color:var(--navy); text-decoration:none; padding:14px 28px; font-weight:600; font-size:.9rem; letter-spacing:.01em; border-radius:2px; border:1px solid var(--gold);}
-  .process-cta:hover{background:var(--gold-soft); border-color:var(--gold-soft);}
-  @media (max-width:700px){
-    .p-timeline{padding-left:20px;}
-    .p-row::before{left:-25px;}
-    .p-row{padding-bottom:34px;}
-  }
 </style>
 </head>
 <body>
@@ -155,44 +128,6 @@
       <div class="why-item"><h3><span class="check">&#10003;</span>Established Legacy</h3><p>Serving Model Town families for over two decades.</p></div>
       <div class="why-item"><h3><span class="check">&#10003;</span>Active Student Life</h3><p>Five student-run societies and a full events calendar.</p></div>
     </div>
-  </div>
-</section>
-
-<section class="process" id="process" aria-labelledby="process-title">
-  <div class="wrap">
-    <div class="head">
-      <span class="label">How Admissions Works</span>
-      <h2 id="process-title">Your child's admissions journey</h2>
-    </div>
-    <ol class="p-timeline">
-      <li class="p-row reveal">
-        <span class="p-num">01</span>
-        <h3>Make an Inquiry</h3>
-        <p>Send your child's name, grade, and contact details through the WhatsApp form below, or call the Admissions team directly. It opens a pre-filled WhatsApp message addressed to HPS, which you send yourself.</p>
-      </li>
-      <li class="p-row reveal">
-        <span class="p-num">02</span>
-        <h3>Visit / Speak With Admissions</h3>
-        <p class="confirm">[CONFIRM: Can parents visit the campus before applying, and is an appointment required?]</p>
-      </li>
-      <li class="p-row reveal">
-        <span class="p-num">03</span>
-        <h3>Submit Required Documents</h3>
-        <p class="confirm">[CONFIRM: Exact documents required for admission]</p>
-        <p class="confirm">[CONFIRM: What happens after parents submit the required documents?]</p>
-      </li>
-      <li class="p-row reveal">
-        <span class="p-num">04</span>
-        <h3>Assessment / Placement</h3>
-        <p class="confirm">[CONFIRM: Does HPS conduct an admission assessment, interview, or placement test?]</p>
-      </li>
-      <li class="p-row reveal">
-        <span class="p-num">05</span>
-        <h3>Admission Confirmation</h3>
-        <p class="confirm">[CONFIRM: How is admission confirmation communicated?]</p>
-      </li>
-    </ol>
-    <a class="process-cta" href="#apply">Start With an Inquiry</a>
   </div>
 </section>
 
@@ -255,20 +190,6 @@ document.getElementById('admissionForm').addEventListener('submit', function(e){
   const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(text)}`;
   window.open(url, '_blank');
 });
-
-(function(){
-  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!prefersReduced && 'IntersectionObserver' in window) {
-    var obs = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
-      });
-    }, {threshold:.15});
-    document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
-  } else {
-    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
-  }
-})();
 </script>
 
 </body>
