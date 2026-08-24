@@ -150,13 +150,32 @@
         <div class="row2">
           <div><label for="sname">Student's name</label><input id="sname" required></div>
           <div><label for="grade">Applying for grade</label>
-            <select id="grade">
-              <option>Playgroup / Nursery</option>
-              <option>Kindergarten</option>
-              <option>Grade 1-5</option>
-              <option>Grade 6-8</option>
-              <option>Grade 9-10 (Matric)</option>
-              <option>O Level</option>
+            <select id="grade" required>
+              <option value="" disabled selected>Select an option</option>
+              <optgroup label="Early Years">
+                <option>Playgroup</option>
+                <option>Nursery</option>
+                <option>Prep</option>
+              </optgroup>
+              <optgroup label="Primary (Grade 1–8)">
+                <option>Grade 1</option>
+                <option>Grade 2</option>
+                <option>Grade 3</option>
+                <option>Grade 4</option>
+                <option>Grade 5</option>
+                <option>Grade 6</option>
+                <option>Grade 7</option>
+                <option>Grade 8</option>
+              </optgroup>
+              <optgroup label="Matric">
+                <option>Grade 9</option>
+                <option>Grade 10</option>
+              </optgroup>
+              <optgroup label="Cambridge">
+                <option>C1</option>
+                <option>C2</option>
+                <option>C3</option>
+              </optgroup>
             </select>
           </div>
         </div>
